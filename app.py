@@ -6,6 +6,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
+from datetime import date
 from forms import *
 if os.path.exists('env.py'):
     import env
@@ -25,6 +26,16 @@ def homepage():
     return render_template('index.html')
 
 
+@app.route('/profile/<username>')
+def profile(username):
+    return render_template('profile.html', username=username)    
+
+
+@app.route('/review_stream')
+def review_stream(username):
+    return render_template('review_stream.html')    
+
+
 @app.route('/upload_post', methods=['GET', 'POST'])
 def upload_post():
     """ Finds user profile using the username in the database
@@ -40,8 +51,10 @@ def upload_post():
 
     if request.method == 'POST':
         post_date = datetime.now().strftime('%d/%m/%y, %H:%M')
-        post_input = request.form.get('add_comment')
-        post_type = request.form.get('post_type')
+        post_input = request.form['post_input']
+        post_type = request.form['post_type']
+        print(post_input)
+        print(post_type)
 
         post = {
             '_id': ObjectId(),
@@ -49,9 +62,9 @@ def upload_post():
             'author': username + " " + user_pronouns,
             'user_id': user_session['_id'],
             'post_input': post_input,
-                'img_url': user_session['image_url'],
-                'post_type': post_type,
-                'comments': []
+            'img_url': user_session['image_url'],
+            'post_type': post_type,
+            'comments': []
         }
 
         mongo.db.posts.insert_one(post)
