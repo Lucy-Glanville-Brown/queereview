@@ -6,6 +6,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
+from forms import *
 if os.path.exists('env.py'):
     import env
 
@@ -52,7 +53,7 @@ def upload_post():
                 }
 
             mongo.db.posts.insert_one(post)
-        return redirect(url_for('review_stream')
+        return redirect(url_for('review_stream'))
 
     return render_template('upload_post.html')
 
