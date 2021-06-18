@@ -60,6 +60,50 @@ def upload_post():
     return render_template('upload_post.html', form=form)
 
 
+# Register
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    '''
+    CREATE.
+    Creates a new account for a new user; it calls the RegisterForm class
+     from forms.py file.
+    Checks if the username is not already excist in database,
+    hashes the entered password and add a new user to session.
+    '''
+    # checks if user is not already has an account
+    if 'username' in session:
+        flash('You are already registered!')
+        return redirect(url_for('homepage'))
+
+    form = RegisterForm()
+    if form.validate_on_submit():
+        users = mongo.db.users
+        # checks if the username is unique
+        registered_user = mongo.db.users.find_one({'username':
+                                                   request.form['username']})
+        if registered_user:
+            flash("Sorry, this username is already taken!")
+            return redirect(url_for('register'))
+        else:
+            # hashes the entered password using werkzeug
+            hashed_password = generate_password_hash(request.form['password'])
+            new_user = {
+                "username": request.form['username'],
+                "password": hashed_password,
+                "email": request.form['email'],
+                "personal_pronouns": request.form['personal_pronouns'],
+                "occupation": request.form['occupation'],
+                "tech_stack": request.form['tech_stack'],
+                "about_me": request.form['about_me'],
+            }
+            users.insert_one(new_user)
+            # add new user to the session
+            session["username"] = request.form['username']
+            flash('Your account has been successfully created.')
+            return redirect(url_for('homepage'))
+    return render_template('register.html', form=form)
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
