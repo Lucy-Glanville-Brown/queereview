@@ -1,0 +1,34 @@
+ {% extends "base.html" %}
+
+
+ {% block content %}
+ <div class="add-post-div">
+     <h2>Add a Post</h2>
+     <h3>This is a safe place to ask questions, submit full peer reviews and get help with code snippets and functions
+     </h3>
+     <form class="input-form" method="POST" action="">
+         {{ form.hidden_tag() }}
+         <!-- Post Input -->
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.post_input(placeholder="Add Post", class="form-control") }}
+             {% for error in form.post_input.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+         <!-- Type of request -->
+         <div class="input-group">
+             {% for subfield in form.post_type %}
+             <tr>
+                 <td>{{ subfield }}</td>
+                 <td>{{ subfield.label }}</td>
+             </tr>
+             {% endfor %}
+
+
+         </div>
+         {{ form.submit(class="col-12 mt-4 btn register-btn") }}
+
+     </form>
+ </div>
+ {% endblock %}
