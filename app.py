@@ -32,7 +32,7 @@ def profile(username):
 
 
 @app.route('/review_stream')
-def review_stream(username):
+def review_stream():
     return render_template('review_stream.html')    
 
 
@@ -43,26 +43,27 @@ def upload_post():
     Adds a post to the database
     If not session redirects to login
     """
-    # user_session = mongo.db.users.find_one({'username': session['user']})
-    # user_pronouns = user_session['pronouns']
-    # username = user_session['username']
+    user_session = mongo.db.users.find_one({'username': session['username']})
+    user_pronouns = user_session['personal_pronouns']
+    username = user_session['username']
 
     form = AddPostForm()
 
     if request.method == 'POST':
-        post_date = datetime.now().strftime('%d/%m/%y, %H:%M')
+        # post_date = datetime.now().strftime('%d/%m/%y, %H:%M')
         post_input = request.form['post_input']
         post_type = request.form['post_type']
         print(post_input)
         print(post_type)
+        print(user_session['_id'])
 
         post = {
             '_id': ObjectId(),
-            'date': post_date,
+            # 'date': post_date,
             'author': username + " " + user_pronouns,
             'user_id': user_session['_id'],
             'post_input': post_input,
-            'img_url': user_session['image_url'],
+            # 'img_url': user_session['image_url'],
             'post_type': post_type,
             'comments': []
         }
@@ -92,28 +93,28 @@ def register():
     if form.validate_on_submit():
         users = mongo.db.users
         # checks if the username is unique
-        registered_user = mongo.db.users.find_one({'username':
-                                                   request.form['username']})
-        if registered_user:
-            flash("Sorry, this username is already taken!")
-            return redirect(url_for('register'))
-        else:
+        # registered_user = mongo.db.users.find_one({'username':
+        #                                            request.form['username']})
+        # if registered_user:
+        #     flash("Sorry, this username is already taken!")
+        #     return redirect(url_for('register'))
+        # else:
             # hashes the entered password using werkzeug
-            hashed_password = generate_password_hash(request.form['password'])
-            new_user = {
-                "username": request.form['username'],
-                "password": hashed_password,
-                "email": request.form['email'],
-                "personal_pronouns": request.form['personal_pronouns'],
-                "occupation": request.form['occupation'],
-                "tech_stack": request.form['tech_stack'],
-                "about_me": request.form['about_me'],
-            }
-            users.insert_one(new_user)
-            # add new user to the session
-            session["username"] = request.form['username']
-            flash('Your account has been successfully created.')
-            return redirect(url_for('homepage'))
+        hashed_password = generate_password_hash(request.form['password'])
+        new_user = {
+            "username": request.form['username'],
+            "password": hashed_password,
+            "email": request.form['email'],
+            "personal_pronouns": request.form['personal_pronouns'],
+            "occupation": request.form['occupation'],
+            "tech_stack": request.form['tech_stack'],
+            "about_me": request.form['about_me'],
+        }
+        users.insert_one(new_user)
+        # add new user to the session
+        session["username"] = request.form['username']
+        flash('Your account has been successfully created.')
+        return redirect(url_for('homepage'))
     return render_template('register.html', form=form)
 
 

@@ -17,7 +17,7 @@ class RegisterForm(FlaskForm):
                        validators=[DataRequired(), Length(min=6, max=35)])
     personal_pronouns = StringField('Personal Pronouns',
                                     validators=[DataRequired(),
-                                                Length(min=2, max=6)])
+                                                Length(min=2, max=20)])
     occupation = StringField('Occupation',
                              validators=[DataRequired(),
                                          Length(min=6, max=35)])
