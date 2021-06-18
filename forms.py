@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, EmailField
+
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, EmailField, RadioField
 from wtforms.validators import DataRequired, Length, EqualTo
 
 
@@ -33,9 +34,12 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 
-class AddPost(FlaskForm):
+class AddPostForm(FlaskForm):
     post_input = StringField('Add Post',
                              validators=[DataRequired(), Length(
                                  min=3, max=3000)])
+    post_type = RadioField('Post Type', choices=[('peer', 'Peer Review'), (
+        'code', 'Code Snippet'), ('general', 'General')],
+                            validators=[DataRequired()])                        
 
     submit = SubmitField('Add Post')
