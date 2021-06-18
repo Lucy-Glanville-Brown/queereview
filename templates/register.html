@@ -2,6 +2,77 @@
 
 {% block content %}
 
+<form class="input-form" method="POST" action="">
+         {{ form.hidden_tag() }}
+         <!-- Username -->
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.username(placeholder="Username", class="form-control") }}
+             {% for error in form.username.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+         <!-- Personal Pronous -->
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.personal_pronouns(placeholder="Personal Pronous", class="form-control") }}
+             {% for error in form.personal_pronouns.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+         <!-- email -->
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.email(placeholder="Email", class="form-control") }}
+             {% for error in form.email.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+         <!-- password -->
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.password(placeholder="Password", class="form-control") }}
+             {% for error in form.password.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+         <!-- Repeat Password -->
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.confirm_password(placeholder="Repeat Password", class="form-control") }}
+             {% for error in form.confirm_password.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+         <!-- Occupation -->
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.occupation(placeholder="Occupation", class="form-control") }}
+             {% for error in form.occupation.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+         <!-- Tech Stack -->
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.tech_stack(placeholder="Tech Stack", class="form-control") }}
+             {% for error in form.occupation.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+         <!-- About me -->
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.about_me(placeholder="About Me", class="form-control") }}
+             {% for error in form.about_me.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+
+         <!-- Submit -->
+         {{ form.submit(class="col-12 mt-4 btn register-btn") }}
+
+</form>         
 
 
 
