@@ -220,6 +220,14 @@ def delete_profile(username):
     flash("Your profile has been succesfully deleted")
     return redirect(url_for('index'))    
 
+@ app.route('/logout')
+def logout():
+    """ Removes session cookie and tells user they are logged out
+    """
+    session.pop('username')
+    flash("You have been logged out")
+    return redirect(url_for('login'))
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
