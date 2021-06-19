@@ -166,24 +166,32 @@ def post(post_id):
             flash('Woops post not found')
             return render_template('profile_not_found.html')
 
-        return render_template(
-            'post.html',
-            post=post, form=form
-        )
+        print('outside')
 
         if form.validate_on_submit():
+            print('inside')
             comment_date = datetime.now().strftime('%d/%m/%y, %H:%M')
             comment_input = request.form['comment_input']
             comment_id = ObjectId()
-            session_user = mongo.db.users.find_one({'username': session['username']})
+            session_user = mongo.db.users.find_one(
+                {'username': session['username']})
 
-            comment = {
-                '_id': comment_id,
-                'date': comment_date,
-                'author': session_user['username'] + " " + session_user['user_pronouns'],
-                'user_id': session_user['_id'],
-                'comment_input': comment_input,
-            }
+            mongo.db.posts.update_one(
+                {'_id': ObjectId(post_id)},
+                {'$addToSet': {'comments': {
+                    '_id': comment_id,
+                    'date': comment_date,
+                    'author': session_user['username'] + " " + session_user['personal_pronouns'],
+                    'user_id': session_user['_id'],
+                    'comment_input': comment_input,
+                }}})
+
+            print('added')
+
+            return render_template(
+                'post.html',
+                post=post, form=form
+            )
 
     else:
         flash("Please log in to view this page")
