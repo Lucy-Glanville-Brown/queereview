@@ -44,9 +44,10 @@ class AddPostForm(FlaskForm):
     post_type = RadioField('Post Type', choices=[('peer', 'Peer Review'), (
         'code', 'Code Snippet'), ('general', 'General')],
                             validators=[DataRequired()])  
-    code_pen = URLField('Code Pen URL', validators=[url()])
-
-
+    code_pen = StringField('Code Pen URL')
+    git_hub = StringField('Repo URl')
+    deployed = StringField('Deployed Site')
+    
     submit = SubmitField('Add Post')
 
 

@@ -8,6 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from datetime import date, datetime
 from forms import *
+from utilities import *
 if os.path.exists('env.py'):
     import env
 
@@ -69,16 +70,21 @@ def edit_profile(username):
     form = UpdateProfileForm()
     if form.validate_on_submit():
         users = mongo.db.users
+<<<<<<< HEAD
         user_profile = mongo.db.users.find_one(
             {'username': session['username']})
         updated_details = {
+=======
+        
+        users.update_one({"username": username}, 
+        {'$set' : {
+>>>>>>> dc43adfb71fde28d1ca56fe6f8ffc77a20a112b6
             "email": request.form['email'],
             "personal_pronouns": request.form['personal_pronouns'],
             "occupation": request.form['occupation'],
             "tech_stack": request.form['tech_stack'],
             "about_me": request.form['about_me'],
-        }
-        users.update({"username": username}, updated_details)  
+        }}) 
 
         flash('Your details have been successfully update.')
         return redirect(url_for('profile'))
@@ -156,25 +162,11 @@ def upload_post():
     user_session = mongo.db.users.find_one({'username': session['username']})
     user_pronouns = user_session['personal_pronouns']
     username = user_session['username']
+    user_id = user_session['_id']
 
     if form.validate_on_submit():
-        post_date = datetime.now().strftime('%d/%m/%y, %H:%M')
-        post_input = request.form['post_input']
-        post_type = request.form['post_type']
-        post_title = request.form['post_title']
-        post_id = ObjectId()
 
-        post = {
-            '_id': post_id,
-            'date': post_date,
-            'post_title': post_title,
-            'author': username + " " + user_pronouns,
-            'user_id': user_session['_id'],
-            'post_input': post_input,
-            # 'img_url': user_session['image_url'],
-            'post_type': post_type,
-            'comments': []
-        }
+        post = get_post(user_pronouns, username, user_id)
 
         mongo.db.posts.insert_one(post)
 
