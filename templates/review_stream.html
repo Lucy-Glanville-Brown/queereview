@@ -3,10 +3,11 @@
 {% block content %}
 
 {% for post in posts%}
+<div style="border: red solid 1px">
     <p>Post Title:{{post.post_title}}</p>
     <p>Post Type: {{post.post_type}}</p>
     <code>Post: {{post.post_input}}</code>
     <p>Post Author: {{post.author}}</p>
-
+</div>
 {% endfor %}
 {% endblock %}
