@@ -69,6 +69,8 @@ def edit_profile(username):
     form = UpdateProfileForm()
     if form.validate_on_submit():
         users = mongo.db.users
+        user_profile = mongo.db.users.find_one(
+            {'username': session['username']})
         updated_details = {
             "email": request.form['email'],
             "personal_pronouns": request.form['personal_pronouns'],
