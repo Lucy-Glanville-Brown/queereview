@@ -11,6 +11,13 @@
          <!-- Post Input -->
          <div class="input-group ">
              <span class="input-group-text register-icon"></span>
+             {{ form.post_title(placeholder="Post Title", class="form-control") }}
+             {% for error in form.post_title.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
              {{ form.post_input(placeholder="Add Post", class="form-control") }}
              {% for error in form.post_input.errors %}
              <small class="text-red">{{ error }}</small>

@@ -35,6 +35,9 @@ class LoginForm(FlaskForm):
 
 
 class AddPostForm(FlaskForm):
+    post_title = StringField('Add Title',
+                             validators=[DataRequired(), Length(
+                                 min=3, max=40)])
     post_input = StringField('Add Post',
                              validators=[DataRequired(), Length(
                                  min=3, max=3000)])

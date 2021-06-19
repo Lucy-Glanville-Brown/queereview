@@ -2,7 +2,33 @@
 
 {% block content %}
 
+<p class="bio">Username: {{ user_profile.username}} ( {{user_profile.personal_pronouns}} )</p>
+<p><span class="profile-items">About Me: </span>{{ user_profile.about_me}}</p>
+<p><span class="profile-items">Occupation: </span>{{ user_profile.occupation}}</p>
+<p><span class="profile-items">Tech Stack: </span>{{ user_profile.tech_stack}}</p>
+{% if user_profile.posts %}
+<p><span class="profile-items">My Posts </span>
+    <ul>
+        {% for post in my_posts %}
+        <li>{{post.post_title}}</li>
+
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p><span class="profile-items">My Posts: None added </span></p>
+    {% endif %}
+    {% if user_profile.commented_on %}
+    <ul>
+        {% for comment in user_profile.commented_on %}
+        <li>{{post.comment.comment_title}}</li>
+
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p><span class="profile-items">Posts I've commented on: None added </span></p>
+    {% endif %}
 
 
 
-{% endblock %}
+
+    {% endblock %}
