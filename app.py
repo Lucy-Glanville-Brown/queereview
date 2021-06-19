@@ -60,7 +60,14 @@ def profile(username):
 
 @app.route('/review_stream')
 def review_stream():
-    return render_template('review_stream.html')
+    posts = mongo.db.posts.find()
+    return render_template('review_stream.html', posts=posts)
+
+
+@app.route('/users')
+def users():
+    users = mongo.db.users.find()
+    return render_template('users.html', users=users)    
 
 
 @app.route('/login', methods=['GET', 'POST'])
