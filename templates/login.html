@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Log in</h2>
+
+<form class="input-form" method="POST" action="">
+         {{ form.hidden_tag() }}
+         <!-- Username -->
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.username(placeholder="Username", class="form-control") }}
+             {% for error in form.username.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.password(placeholder="Password", class="form-control") }}
+             {% for error in form.password.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+         {{ form.submit(class="col-12 mt-4 btn register-btn") }}
+</form>
+
+
+{% endblock %}
