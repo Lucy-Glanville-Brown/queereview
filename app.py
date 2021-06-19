@@ -73,7 +73,7 @@ def edit_profile(username):
 
         user_id = mongo.db.users.find_one(
             {'username': session['username']})['_id']
-  
+          
         return render_template(
             'edit_profile.html',
             username=username,
