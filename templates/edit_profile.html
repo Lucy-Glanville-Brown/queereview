@@ -2,10 +2,53 @@
 
 {% block content %}
 
-<p><span class="profile-items">About Me: </span>{{ user_profile.about_me}}</p>
-<p><span class="profile-items">Occupation: </span>{{ user_profile.occupation}}</p>
-<p><span class="profile-items">Tech Stack: </span>{{ user_profile.tech_stack}}</p>
+<form class="input-form" method="POST" action="">
+    {{ form.hidden_tag() }}
+    <!-- Personal Pronous -->
+    <div class="input-group ">
+        <span class="input-group-text register-icon"></span>
+        {{ form.personal_pronouns(placeholder=user_profile.personal_pronouns, class="form-control") }}
+        {% for error in form.personal_pronouns.errors %}
+        <small class="text-red">{{ error }}</small>
+        {% endfor %}
+    </div>
+    <!-- email -->
+    <div class="input-group ">
+        <span class="input-group-text register-icon"></span>
+        {{ form.email(placeholder=user_profile.email, class="form-control") }}
+        {% for error in form.email.errors %}
+        <small class="text-red">{{ error }}</small>
+        {% endfor %}
+    </div>
+    <!-- Occupation -->
+    <div class="input-group ">
+        <span class="input-group-text register-icon"></span>
+        {{ form.occupation(placeholder=user_profile.occupation, class="form-control") }}
+        {% for error in form.occupation.errors %}
+        <small class="text-red">{{ error }}</small>
+        {% endfor %}
+    </div>
+    <!-- Tech Stack -->
+    <div class="input-group ">
+        <span class="input-group-text register-icon"></span>
+        {{ form.tech_stack(placeholder=user_profile.tech_stack, class="form-control") }}
+        {% for error in form.occupation.errors %}
+        <small class="text-red">{{ error }}</small>
+        {% endfor %}
+    </div>
+    <!-- About me -->
+    <div class="input-group ">
+        <span class="input-group-text register-icon"></span>
+        {{ form.about_me(placeholder=user_profile.about_me, class="form-control") }}
+        {% for error in form.about_me.errors %}
+        <small class="text-red">{{ error }}</small>
+        {% endfor %}
+    </div>
 
+    <!-- Submit -->
+    {{ form.submit(class="col-12 mt-4 btn register-btn") }}
+
+</form>         
 
 
 {% endblock %}

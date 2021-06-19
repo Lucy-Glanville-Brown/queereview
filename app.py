@@ -66,6 +66,20 @@ def edit_profile(username):
     """ Edit Profile page
     Finds the profile from the username and allow user to update profile details
     """
+    form = UpdateProfileForm()
+    if form.validate_on_submit():
+        users = mongo.db.users
+        updated_details = {
+            "email": request.form['email'],
+            "personal_pronouns": request.form['personal_pronouns'],
+            "occupation": request.form['occupation'],
+            "tech_stack": request.form['tech_stack'],
+            "about_me": request.form['about_me'],
+        }
+        users.update({"username": username}, updated_details)  
+
+        flash('Your details have been successfully update.')
+        return redirect(url_for('profile'))
 
     if 'username' in session:
         user_profile = mongo.db.users.find_one(
@@ -82,13 +96,14 @@ def edit_profile(username):
             username=username,
             user_profile=user_profile,
             user_session=user_session,
+            form=form
         )
 
     else:
         flash("Please log in to view this page")
         return redirect(url_for('login'))
 
-    return render_template('profile.html', username=username)
+    return render_template('edit_profile.html', username=username, form=form)
 
 @app.route('/review_stream')
 def review_stream():
