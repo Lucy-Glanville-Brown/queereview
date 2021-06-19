@@ -71,7 +71,7 @@ def edit_profile(username):
     if form.validate_on_submit():
         users = mongo.db.users
         users.update_one({"username": username}, 
-        {'$set' : {
+        {'$set': {
             "email": request.form['email'],
             "personal_pronouns": request.form['personal_pronouns'],
             "occupation": request.form['occupation'],
@@ -145,7 +145,9 @@ def upload_post():
     If not session redirects to login
     """
 
-    form = AddPostForm()
+    formCode = AddCodeForm()
+    formReview = AddReviewForm()
+    formGeneral = AddGeneralForm()
 
     if 'username' not in session:
         flash("Please log in to make a post")
@@ -156,14 +158,16 @@ def upload_post():
     username = user_session['username']
     user_id = user_session['_id']
 
-    if form.validate_on_submit():
+    if formCode.validate_on_submit() or formReview.validate_on_submit() or formGeneral.validate_on_submit():
 
         post = get_post(user_pronouns, username, user_id)
 
         mongo.db.posts.insert_one(post)
 
         return redirect(url_for('review_stream'))
-    return render_template('upload_post.html', form=form)
+    return render_template('upload_post.html', formCode = formCode,
+    formReview = formReview,
+    formGeneral = formGeneral)
 
 
 # Register
@@ -208,6 +212,13 @@ def register():
             flash('Your account has been successfully created.')
             return redirect(url_for('homepage'))
     return render_template('register.html', form=form)
+
+
+@app.route('/delete_profile/<username>', methods=['GET', 'POST'])
+def delete_profile(username):
+    mongo.db.users.remove({'username': session['username']})
+    flash("Your profile has been succesfully deleted")
+    return redirect(url_for('index'))    
 
 
 if __name__ == '__main__':
