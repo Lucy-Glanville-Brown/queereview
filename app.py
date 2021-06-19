@@ -33,11 +33,14 @@ def profile(username):
     """
 
     if 'username' in session:
-        user_profile = mongo.db.users.find_one(
-            {'username': session['username']})
         user_session = mongo.db.users.find_one(
+            {'username': session['username']})['_id']
+        user_profile = mongo.db.users.find_one(
             {'username': username})
-        print(user_session)
+
+        if not user_profile:
+            flash('Woops profile not found')
+            return render_template('profile_not_found.html')
 
         user_id = mongo.db.users.find_one(
             {'username': session['username']})['_id']
