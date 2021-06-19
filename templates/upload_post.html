@@ -39,12 +39,12 @@
 
      </form>
 </div>
-<div id="code_form">
+<div id="review">
      <form class="input-form" method="POST" action="">
          {{ form.hidden_tag() }}
          <!-- Post Input -->
          <div class="input-group ">
-             <input type="hidden" id="code" name="post_type" value="code">
+             <input type="hidden" id="code" name="post_type" value="review">
              <span class="input-group-text register-icon"></span>
              {{ form.post_title(placeholder="Post Title", class="form-control") }}
              {% for error in form.post_title.errors %}
@@ -77,13 +77,13 @@
 
      </form>
 </div>
-<div id="review_form">
+<div id="code_form">
 
      <form class="input-form" method="POST" action="">
          {{ form.hidden_tag() }}
          <!-- Post Input -->
          <div class="input-group ">
-             <input type="hidden" id="code" name="post_type" value="review">
+             <input type="hidden" id="code" name="post_type" value="code">
              <span class="input-group-text register-icon"></span>
              {{ form.post_title(placeholder="Post Title", class="form-control") }}
              {% for error in form.post_title.errors %}

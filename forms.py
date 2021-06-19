@@ -45,7 +45,7 @@ class AddPostForm(FlaskForm):
         'code', 'Code Snippet'), ('general', 'General')],
                             validators=[DataRequired()])  
     code_pen = StringField('Code Pen URL')
-    git_hub = StringField('Repo URl')
+    github = StringField('Repo URl')
     deployed = StringField('Deployed Site')
     
     submit = SubmitField('Add Post')

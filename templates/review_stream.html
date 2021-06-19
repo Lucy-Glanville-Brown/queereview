@@ -10,7 +10,13 @@
     <p>Post Author: {{post.author}}</p>
     {% if post.code_pen %}
         <a href={{post.code_pen}} target="_blank">My Code Pen</a>
+    {% endif %}
+    {% if post.github %}
+        <a href={{post.github}} target="_blank">My Code Pen</a>
     {% endif %}    
+    {% if post.deployed %}
+        <a href={{post.deployed}} target="_blank">My Code Pen</a>
+    {% endif %}      
 </div>
 {% endfor %}
 {% endblock %}

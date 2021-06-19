@@ -70,7 +70,6 @@ def edit_profile(username):
     form = UpdateProfileForm()
     if form.validate_on_submit():
         users = mongo.db.users
-        
         users.update_one({"username": username}, 
         {'$set' : {
             "email": request.form['email'],
@@ -88,7 +87,6 @@ def edit_profile(username):
             {'username': session['username']})
         user_session = mongo.db.users.find_one(
             {'username': username})
-        print(user_session)
 
         user_id = mongo.db.users.find_one(
             {'username': session['username']})['_id']
