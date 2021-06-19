@@ -48,3 +48,18 @@ class AddPostForm(FlaskForm):
 
 
     submit = SubmitField('Add Post')
+
+
+class UpdateProfileForm(FlaskForm):
+    email = EmailField('Email Address',
+                       validators=[DataRequired(), Length(min=6, max=35)])
+    personal_pronouns = StringField('Personal Pronouns',
+                                    validators=[DataRequired(),
+                                                Length(min=2, max=20)])
+    occupation = StringField('Occupation',
+                             validators=[DataRequired(),
+                                         Length(min=6, max=35)])
+    tech_stack = StringField('Tech Stack', validators=[DataRequired(),
+                                                       Length(min=6, max=35)])
+    about_me = TextAreaField('About Me', validators=[Length(min=6, max=1000)])
+    submit = SubmitField('Update')
