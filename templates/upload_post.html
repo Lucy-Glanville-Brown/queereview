@@ -31,9 +31,18 @@
                  <td>{{ subfield.label }}</td>
              </tr>
              {% endfor %}
-
-
          </div>
+
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.code_pen(placeholder="Code Pen URL", class="form-control") }}
+             {% for error in form.code_pen.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+
+
+
          {{ form.submit(class="col-12 mt-4 btn register-btn") }}
 
      </form>
