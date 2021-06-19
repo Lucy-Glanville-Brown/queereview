@@ -58,6 +58,35 @@ def profile(username):
     return render_template('profile.html', username=username)
 
 
+@app.route('/edit_profile/<username>', methods=['GET', 'POST'])
+def edit_profile(username):
+    """ Edit Profile page
+    Finds the profile from the username and allow user to update profile details
+    """
+
+    if 'username' in session:
+        user_profile = mongo.db.users.find_one(
+            {'username': session['username']})
+        user_session = mongo.db.users.find_one(
+            {'username': username})
+        print(user_session)
+
+        user_id = mongo.db.users.find_one(
+            {'username': session['username']})['_id']
+  
+        return render_template(
+            'edit_profile.html',
+            username=username,
+            user_profile=user_profile,
+            user_session=user_session,
+        )
+
+    else:
+        flash("Please log in to view this page")
+        return redirect(url_for('login'))
+
+    return render_template('profile.html', username=username)
+
 @app.route('/review_stream')
 def review_stream():
     posts = mongo.db.posts.find()
@@ -159,7 +188,7 @@ def register():
             return redirect(url_for('register'))
         else:
             # hashes the entered password using werkzeug
-            # hashed_password = generate_password_hash(request.form['password'])
+            hashed_password = generate_password_hash(request.form['password'])
             new_user = {
                 "username": request.form['username'],
                 "password": hashed_password,
