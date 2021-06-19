@@ -1,11 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-{% for post in posts%}
-<div style="border: red solid 1px">
-    <a href="{{url_for('post', post_id=post._id)}}">Full post</a>
-    <p>{{post._id}}</p>
+<div>
     <p>Post Title:{{post.post_title}}</p>
     <p>Post Type: {{post.post_type}}</p>
     {{post.post_input}}
@@ -21,5 +17,21 @@
     {% endif %}      
     
 </div>
-{% endfor %}
+
+<form class="input-form" method="POST" action="">
+         {{ form.hidden_tag() }}
+         <!-- Username -->
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.comment_input(placeholder="Add Comment", class="form-control") }}
+             {% for error in form.comment_input.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+
+         {{ form.submit(class="col-12 mt-4 btn register-btn") }}
+
+</form>         
+
+
 {% endblock %}

@@ -85,3 +85,10 @@ class UpdateProfileForm(FlaskForm):
                                                        Length(min=6, max=35)])
     about_me = TextAreaField('About Me', validators=[Length(min=6, max=1000)])
     submit = SubmitField('Update')
+
+
+class AddCommentForm(FlaskForm):
+    comment_input = TextAreaField('Add Comment',
+                             validators=[DataRequired(), Length(
+                                 min=3, max=3000)])  
+    submit = SubmitField('Update')

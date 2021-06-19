@@ -43,8 +43,8 @@ def general_post(user_pronouns, username, user_id, post_type):
         'post_type': post_type,
         'comments': []
     }
-
     return post
+
 
 def code_post(user_pronouns, username, user_id, post_type):
 
@@ -61,12 +61,10 @@ def code_post(user_pronouns, username, user_id, post_type):
         'author': username + " " + user_pronouns,
         'user_id': user_id,
         'post_input': post_input,
-        # 'img_url': user_session['image_url'],
         'post_type': post_type,
         'code_pen': code_pen,
         'comments': []
     }
-
     return post
 
 
@@ -86,11 +84,9 @@ def review_post(user_pronouns, username, user_id, post_type):
         'author': username + " " + user_pronouns,
         'user_id': user_id,
         'post_input': post_input,
-        # 'img_url': user_session['image_url'],
         'post_type': post_type,
         'deployed': deployed,
         'github': github,
         'comments': []
     }
-
     return post
