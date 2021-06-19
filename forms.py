@@ -34,22 +34,43 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 
-class AddPostForm(FlaskForm):
+class AddCodeForm(FlaskForm):
     post_title = StringField('Add Title',
                              validators=[DataRequired(), Length(
                                  min=3, max=40)])
     post_input = TextAreaField('Add Post',
                              validators=[DataRequired(), Length(
                                  min=3, max=3000)])
-    post_type = RadioField('Post Type', choices=[('peer', 'Peer Review'), (
-        'code', 'Code Snippet'), ('general', 'General')],
-                            validators=[DataRequired()])  
     code_pen = StringField('Code Pen URL')
-    git_hub = StringField('Repo URl')
+    
+    submit = SubmitField('Add Post')
+
+
+class AddReviewForm(FlaskForm):
+    post_title = StringField('Add Title',
+                             validators=[DataRequired(), Length(
+                                 min=3, max=40)])
+    post_input = TextAreaField('Add Post',
+                             validators=[DataRequired(), Length(
+                                 min=3, max=3000)])
+    code_pen = StringField('Code Pen URL')
+    github = StringField('Repo URl')
     deployed = StringField('Deployed Site')
     
     submit = SubmitField('Add Post')
 
+
+class AddGeneralForm(FlaskForm):
+    post_title = StringField('Add Title',
+                             validators=[DataRequired(), Length(
+                                 min=3, max=40)])
+    post_input = TextAreaField('Add Post',
+                             validators=[DataRequired(), Length(
+                                 min=3, max=3000)])  
+    github = StringField('Repo URl')
+    deployed = StringField('Deployed Site')
+    
+    submit = SubmitField('Add Post')    
 
 class UpdateProfileForm(FlaskForm):
     email = EmailField('Email Address',
