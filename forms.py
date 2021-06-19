@@ -38,7 +38,7 @@ class AddPostForm(FlaskForm):
     post_title = StringField('Add Title',
                              validators=[DataRequired(), Length(
                                  min=3, max=40)])
-    post_input = StringField('Add Post',
+    post_input = TextAreaField('Add Post',
                              validators=[DataRequired(), Length(
                                  min=3, max=3000)])
     post_type = RadioField('Post Type', choices=[('peer', 'Peer Review'), (
