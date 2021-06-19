@@ -70,14 +70,15 @@ def edit_profile(username):
     form = UpdateProfileForm()
     if form.validate_on_submit():
         users = mongo.db.users
-        updated_details = {
+        
+        users.update_one({"username": username}, 
+        {'$set' : {
             "email": request.form['email'],
             "personal_pronouns": request.form['personal_pronouns'],
             "occupation": request.form['occupation'],
             "tech_stack": request.form['tech_stack'],
             "about_me": request.form['about_me'],
-        }
-        users.update({"username": username}, updated_details)  
+        }}) 
 
         flash('Your details have been successfully update.')
         return redirect(url_for('profile'))

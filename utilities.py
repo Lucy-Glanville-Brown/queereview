@@ -46,7 +46,7 @@ def general_post(user_pronouns, username, user_id, post_type):
 
     return post
 
-    def code_post(user_pronouns, username, user_id, post_type):
+def code_post(user_pronouns, username, user_id, post_type):
 
     post_date = datetime.now().strftime('%d/%m/%y, %H:%M')
     post_input = request.form['post_input']
@@ -88,8 +88,8 @@ def review_post(user_pronouns, username, user_id, post_type):
         'post_input': post_input,
         # 'img_url': user_session['image_url'],
         'post_type': post_type,
-        'deployed' : deployed,
-        'github' : github,
+        'deployed': deployed,
+        'github': github,
         'comments': []
     }
 
