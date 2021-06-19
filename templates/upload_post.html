@@ -2,14 +2,25 @@
 
 
  {% block content %}
+
  <div class="add-post-div">
      <h2>Add a Post</h2>
      <h3>This is a safe place to ask questions, submit full peer reviews and get help with code snippets and functions
      </h3>
+    <h4>Post Type</h4>
+    <label for="code">Code</label>
+    <input type="radio" name="input_type" id="code">
+    <label for="code">Review</label>
+    <input type="radio" name="input_type" id="general">
+    <label for="code">General</label>
+    <input type="radio" name="input_type" id="review">
+
+    <div id="general_form">
      <form class="input-form" method="POST" action="">
          {{ form.hidden_tag() }}
          <!-- Post Input -->
          <div class="input-group ">
+            <input type="hidden" id="general" name="post_type" value="general">
              <span class="input-group-text register-icon"></span>
              {{ form.post_title(placeholder="Post Title", class="form-control") }}
              {% for error in form.post_title.errors %}
@@ -23,13 +34,67 @@
              <small class="text-red">{{ error }}</small>
              {% endfor %}
          </div>
-         <!-- Type of request -->
-         <div class="input-group">
-             {% for subfield in form.post_type %}
-             <tr>
-                 <td>{{ subfield }}</td>
-                 <td>{{ subfield.label }}</td>
-             </tr>
+
+         {{ form.submit(class="col-12 mt-4 btn register-btn") }}
+
+     </form>
+</div>
+<div id="code_form">
+     <form class="input-form" method="POST" action="">
+         {{ form.hidden_tag() }}
+         <!-- Post Input -->
+         <div class="input-group ">
+             <input type="hidden" id="code" name="post_type" value="code">
+             <span class="input-group-text register-icon"></span>
+             {{ form.post_title(placeholder="Post Title", class="form-control") }}
+             {% for error in form.post_title.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.post_input(placeholder="Add Post", class="form-control") }}
+             {% for error in form.post_input.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.code_pen(placeholder="GitHub URL", class="form-control") }}
+             {% for error in form.code_pen.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.code_pen(placeholder="Deployed Site", class="form-control") }}
+             {% for error in form.code_pen.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+
+         {{ form.submit(class="col-12 mt-4 btn register-btn") }}
+
+     </form>
+</div>
+<div id="review_form">
+
+     <form class="input-form" method="POST" action="">
+         {{ form.hidden_tag() }}
+         <!-- Post Input -->
+         <div class="input-group ">
+             <input type="hidden" id="code" name="post_type" value="review">
+             <span class="input-group-text register-icon"></span>
+             {{ form.post_title(placeholder="Post Title", class="form-control") }}
+             {% for error in form.post_title.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.post_input(placeholder="Add Post", class="form-control") }}
+             {% for error in form.post_input.errors %}
+             <small class="text-red">{{ error }}</small>
              {% endfor %}
          </div>
 
@@ -41,10 +106,9 @@
              {% endfor %}
          </div>
 
-
-
          {{ form.submit(class="col-12 mt-4 btn register-btn") }}
 
      </form>
+</div>
  </div>
  {% endblock %}

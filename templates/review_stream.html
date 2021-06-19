@@ -8,6 +8,9 @@
     <p>Post Type: {{post.post_type}}</p>
     {{post.post_input}}
     <p>Post Author: {{post.author}}</p>
+    {% if post.code_pen %}
+        <a href={{post.code_pen}} target="_blank">My Code Pen</a>
+    {% endif %}    
 </div>
 {% endfor %}
 {% endblock %}
