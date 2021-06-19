@@ -26,8 +26,35 @@ def homepage():
     return render_template('index.html')
 
 
-@app.route('/profile/<username>')
+@app.route('/profile/<username>', methods=['GET', 'POST'])
 def profile(username):
+    """ Profile page
+    Finds the profile from the username returns - user_profile
+    """
+
+    if 'username' in session:
+        user_profile = mongo.db.users.find_one(
+            {'username': session['username']})
+        user_session = mongo.db.users.find_one(
+            {'username': username})
+        print(user_session)
+
+        user_id = mongo.db.users.find_one(
+            {'username': session['username']})['_id']
+        my_posts = mongo.db.posts.find({'user_id': user_id})
+
+        return render_template(
+            'profile.html',
+            username=username,
+            user_profile=user_profile,
+            user_session=user_session,
+            my_posts=my_posts
+        )
+
+    else:
+        flash("Please log in to view this page")
+        return redirect(url_for('login'))
+
     return render_template('profile.html', username=username)
 
 
@@ -52,8 +79,8 @@ def login():
         else:
             flash("Either your username or password was incorrect")
             return redirect(url_for('login'))
-               
-    return render_template('login.html', form=form)    
+
+    return render_template('login.html', form=form)
 
 
 @app.route('/upload_post', methods=['GET', 'POST'])
@@ -68,21 +95,23 @@ def upload_post():
 
     if 'username' not in session:
         flash("Please log in to make a post")
-        return redirect(url_for('login'))  
+        return redirect(url_for('login'))
 
     user_session = mongo.db.users.find_one({'username': session['username']})
     user_pronouns = user_session['personal_pronouns']
     username = user_session['username']
 
     if form.validate_on_submit():
-        # post_date = datetime.now().strftime('%d/%m/%y, %H:%M')
+        post_date = datetime.now().strftime('%d/%m/%y, %H:%M')
         post_input = request.form['post_input']
         post_type = request.form['post_type']
+        post_title = request.form['post_title']
         post_id = ObjectId()
 
         post = {
             '_id': post_id,
-            # 'date': post_date,
+            'date': post_date,
+            'post_title': post_title,
             'author': username + " " + user_pronouns,
             'user_id': user_session['_id'],
             'post_input': post_input,
@@ -93,14 +122,8 @@ def upload_post():
 
         mongo.db.posts.insert_one(post)
 
-        mongo.db.users.update_one(
-            {'username': username},
-            {'$addToSet': {'posts': 
-                post_id
-            }})
-        
-        return redirect(url_for('review_stream'))  
-    return render_template('upload_post.html',form=form)
+        return redirect(url_for('review_stream'))
+    return render_template('upload_post.html', form=form)
 
 
 # Register
