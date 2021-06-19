@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, TextAreaField, RadioField
-from wtforms.validators import DataRequired, Length, EqualTo
+from wtforms.validators import DataRequired, Length, EqualTo, url
 from wtforms.fields.html5 import EmailField, URLField
 
 
@@ -43,6 +43,8 @@ class AddPostForm(FlaskForm):
                                  min=3, max=3000)])
     post_type = RadioField('Post Type', choices=[('peer', 'Peer Review'), (
         'code', 'Code Snippet'), ('general', 'General')],
-                            validators=[DataRequired()])                        
+                            validators=[DataRequired()])  
+    code_pen = URLField('Code Pen URL', validators=[url()])
+
 
     submit = SubmitField('Add Post')
