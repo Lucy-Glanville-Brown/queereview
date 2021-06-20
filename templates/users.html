@@ -4,6 +4,12 @@
 
 {% for user in users %}
 <div style="border: red solid 1px">
+    {% if user.profile_image %}
+    <img src="{{user.profile_image}}" alt="Image of {{user.username}}">
+    {% else %}
+    <img src="{{ url_for('static', filename='img/logo_32.png') }}" class="responsive-img profile_image"
+    alt="Profile Image" />
+    {% endif %}
     <p><a class="nav-link" href="{{ url_for('profile', username=user.username ) }}">Username:{{user.username}}({{user.personal_pronouns}})</a></p>
     <p>Tech Stack: {{user.tech_stack}}</p>
     <p>Occupation: {{user.occupation}}</p>
