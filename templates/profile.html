@@ -27,6 +27,7 @@
     {% else %}
     <p><span class="profile-items">Posts I've commented on: None added </span></p>
     {% endif %}
-    <a href="{{url_for('logout')}}">Log out</a>
+    <a class="btn btn-danger" href="{{url_for('logout')}}">Log out</a>
+    <a class="btn btn-danger" href="{{ url_for('edit_profile', username=session['username']) }}">Edit Profile</a>
 
     {% endblock %}

@@ -68,7 +68,7 @@ def edit_profile(username):
     Finds the profile from the username and allow user to update profile details
     """
 
-    user_profile = mongo.db.users.find_one({"username": session['user']})
+    user_profile = mongo.db.users.find_one({"username": session['username']})
 
     form = UpdateProfileForm()
     if form.validate_on_submit():
