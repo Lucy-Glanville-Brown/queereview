@@ -20,39 +20,39 @@
   <header>
     <!--main navigation-->
     <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-      <!--div class="container-fluid"-->
-        <a class="navbar-brand" href="{{ url_for('homepage') }}"><img src=" {{ url_for('static', filename='img/logo_48.png') }}" alt="logo" width="48" height="48">QueeReview</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMobileMenu" aria-controls="toggleMobileMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <!--div class="container-fluid"-->
+          <a class="navbar-brand" href="{{ url_for('homepage') }}"><img src=" {{ url_for('static', filename='img/logo_48.png') }}" alt="logo" width="48" height="48">QueeReview</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMobileMenu" aria-controls="toggleMobileMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
     
-      <div class="collapse navbar-collapse" id="toggleMobileMenu">
-        <ul class="nav navbar-nav ms-auto text-center">
+        <div class="collapse navbar-collapse purple" id="toggleMobileMenu">
+          <ul class="nav navbar-nav ms-auto text-center">
           {% if not session.username %}
-          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-            <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-          </li>
-          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-            <a class="nav-link" href="{{ url_for('register') }}">Register</a>
-          </li>
+            <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+              <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+            </li>
+            <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+              <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+            </li>
           {% endif %}
           {% if session.username %}
-          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-            <a class="nav-link" href="{{ url_for('profile', username=session['username']) }}">Profile</a>
-          </li>
-          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-          </li>
+            <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+              <a class="nav-link" href="{{ url_for('profile', username=session['username']) }}">Profile</a>
+            </li>
+            <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+              <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+            </li>
           {% endif %}
-          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-            <a class="nav-link" href="{{ url_for('users') }}">All Users</a>
-          </li>
-          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-            <a class="nav-link" href="{{ url_for('review_stream') }}">Posts</a>
-          </li>
-        </ul>
-    </div>
+            <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+              <a class="nav-link" href="{{ url_for('users') }}">All Users</a>
+            </li>
+            <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+              <a class="nav-link" href="{{ url_for('review_stream') }}">Posts</a>
+            </li>
+          </ul>
+      </div>
     </nav>
 
   </header>
@@ -70,7 +70,7 @@
       {% endwith %}
   </section>
 
-  <main class="container">
+  <main class="container-fluid">
       {% block content %}
       {% endblock %}
   </main>
@@ -79,7 +79,7 @@
   <footer class="footer sticky-footer py-4">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2021</div>
+            <div class="col-lg-4 text-lg-start">Copyright &copy; QueeReview 2021</div>
             <div class="col-lg-4 my-3 my-lg-0">
                 <a class="btn btn-dark btn-social mx-2" href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
                 <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
