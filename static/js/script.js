@@ -1,6 +1,4 @@
-
-
-function showhide(toggleID){
+function showhide(toggleID) {
     if (toggleID == 'general_form') {
 
         document.getElementById('general_form').style.display = 'block'
@@ -14,7 +12,5 @@ function showhide(toggleID){
         document.getElementById('general_form').style.display = 'none'
         document.getElementById('review_form').style.display = 'none'
         document.getElementById('code_form').style.display = 'block'
-    }}
-
-
-
+    }
+}
