@@ -7,31 +7,60 @@
     {{post.post_input}}
     <p>Post Author: {{post.author}}</p>
     {% if post.code_pen %}
-        <a href={{post.code_pen}} target="_blank">My Code Pen</a>
+    <a href={{post.code_pen}} target="_blank">My Code Pen</a>
     {% endif %}
     {% if post.github %}
-        <a href={{post.github}} target="_blank">GitHub Link</a>
-    {% endif %}    
+    <a href={{post.github}} target="_blank">GitHub Link</a>
+    {% endif %}
     {% if post.deployed %}
-        <a href={{post.deployed}} target="_blank">Deployed Link</a>
-    {% endif %}      
-    
+    <a href={{post.deployed}} target="_blank">Deployed Link</a>
+    {% endif %}
+
+    {% if session_user == post.user_id %}
+    <a href="{{ url_for('edit_post', post_id=post._id)}}">Edit Post</a>
+    <a href="{{ url_for('delete_post', post_id=post._id)}}">Delete Post</a>
+    {% endif %}
 </div>
 
 <form class="input-form" method="POST" action="">
-         {{ form.hidden_tag() }}
-         <!-- Username -->
-         <div class="input-group ">
-             <span class="input-group-text register-icon"></span>
-             {{ form.comment_input(placeholder="Add Comment", class="form-control") }}
-             {% for error in form.comment_input.errors %}
-             <small class="text-red">{{ error }}</small>
-             {% endfor %}
-         </div>
+    {{ form.hidden_tag() }}
+    <!-- Username -->
+    <div class="input-group ">
+        <span class="input-group-text register-icon"></span>
+        {{ form.comment_input(placeholder="Add Comment", class="form-control") }}
+        {% for error in form.comment_input.errors %}
+        <small class="text-red">{{ error }}</small>
+        {% endfor %}
+    </div>
 
-         {{ form.submit(class="col-12 mt-4 btn register-btn") }}
+    {{ form.submit(class="col-12 mt-4 btn register-btn") }}
 
-</form>         
+</form>
+
+{% for comment in post.comments %}
+{% if comment.user_id == session_user %}
+<div style="border: red solid 1px">
+    <p class="none" id="">{{comment.comment_id}}</p>
+    <p>Author{{comment.author}}</p>
+    <p>Comment: {{comment.comment_input}}</p>
+    <form method="POST" action="{{ url_for('delete_comment', post=post._id, comment_id=comment.comment_id)}}" id="
+        delete-comment-form">
+        <button type="submit" class=" btn btn-yellow btn-red">Delete Comment</button>
+    </form>
+</div>
+
+{% else %}
+<div style="border: red solid 1px">
+    <p>Author{{comment.author}}</p>
+    <p>Comment: {{comment.comment_input}}</p>
+</div>
+{% endif %}
+
+{% endfor %}
+
+
+
+
 
 
 {% endblock %}

@@ -2,15 +2,38 @@
 
 {% block content %}
 
+{% if user_profile.profile_image %}
+<img id="user_profile_image" src="{{ user_profile.profile_image }}" class="responsive-img profile_image" alt="Profile Image" />
+<!-- adding if statement only if signed in as user -->
+{% if session['username'] == username %}
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Change Image
+</button>
+{% endif%}
+<!-- end if  -->
+{% else %}
+<img src="{{ url_for('static', filename='img/logo_32.png') }}" class="responsive-img profile_image"
+    alt="Profile Image" />
+<!-- adding if statement only if signed in as user -->
+{% if session['username'] == username %}
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add Image
+</button>
+{% endif %}
+<!-- endif -->
+{% endif %}
+
 <p class="bio">Username: {{ user_profile.username}} ( {{user_profile.personal_pronouns}} )</p>
 <p><span class="profile-items">About Me: </span>{{ user_profile.about_me}}</p>
 <p><span class="profile-items">Occupation: </span>{{ user_profile.occupation}}</p>
 <p><span class="profile-items">Tech Stack: </span>{{ user_profile.tech_stack}}</p>
+
+
 {% if user_profile.posts %}
 <p><span class="profile-items">My Posts </span>
     <ul>
         {% for post in my_posts %}
-        <li>{{post.post_title}}</li>
+        <li><a href="{{url_for('post', post_id=post._id)}}">{{post.post_title}}</a></li>
 
         {% endfor %}
     </ul>
@@ -27,6 +50,13 @@
     {% else %}
     <p><span class="profile-items">Posts I've commented on: None added </span></p>
     {% endif %}
-    <a href="{{url_for('logout')}}">Log out</a>
+
+    {% if user_profile.username == session.username %}
+
+    <a class="btn btn-danger" href="{{url_for('logout')}}">Log out</a>
+    <a class="btn btn-danger" href="{{ url_for('edit_profile', username=session['username']) }}">Edit Profile</a>
+    {% endif %}
+
+    {% include "includes/upload_image.html" %}
 
     {% endblock %}
