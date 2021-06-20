@@ -4,16 +4,17 @@
  {% block content %}
 
  <div class="add-post-div">
-     <h2>Add a Post</h2>
-     <h3>This is a safe place to ask questions, submit full peer reviews and get help with code snippets and functions
-     </h3>
-     <h4>Post Type</h4>
+     <h3>Add a Post</h3>
+     <h4>This is a safe place to ask questions, submit full peer reviews and get help with code snippets and functions
+     </h4>
+     <h5>Post Type</h5>
      <button id="general" onclick="showhide('general_form')">General</button>
      <button id="review" onclick="showhide('review_form')">Review</button>
      <button id="code" onclick="showhide('code_form')">Code</button>
 
 
      <div id="general_form">
+         <p>General Posts are for questions, events, advise!!! Maybe you want to ask a question about an LGBTQ issue at work, or you want to share your weekly win with the community! What ever it is go ahead!</p>
          <form class="input-form" method="POST" action="">
              {{ formGeneral.hidden_tag() }}
              <!-- Post Input -->
@@ -27,7 +28,7 @@
              </div>
              <div class="input-group ">
                  <span class="input-group-text register-icon"></span>
-                 {{ formGeneral.post_input(placeholder="Add Post", class="form-control") }}
+                 {{ formGeneral.post_input(placeholder="Decription", class="form-control") }}
                  {% for error in formGeneral.post_input.errors %}
                  <small class="text-red">{{ error }}</small>
                  {% endfor %}
@@ -36,8 +37,10 @@
              {{ formGeneral.submit(class="col-12 mt-4 btn register-btn") }}
 
          </form>
+         
      </div>
      <div id="review_form">
+         <p>Review Post are for requests for the community to review your entire project, if there is something specific you'd like adivse on then please let the community know in the description.  Include links to your repo and your deployed site so it can be tested properly.</p>
          <form class="input-form" method="POST" action="">
              {{ formReview.hidden_tag() }}
              <!-- Post Input -->
@@ -51,7 +54,7 @@
              </div>
              <div class="input-group ">
                  <span class="input-group-text register-icon"></span>
-                 {{ formReview.post_input(placeholder="Add Post", class="form-control") }}
+                 {{ formReview.post_input(placeholder="Decription", class="form-control") }}
                  {% for error in formReview.post_input.errors %}
                  <small class="text-red">{{ error }}</small>
                  {% endfor %}
@@ -74,8 +77,10 @@
              {{ formReview.submit(class="col-12 mt-4 btn register-btn") }}
 
          </form>
+         
      </div>
      <div id="code_form">
+         <p>Code Snippet Requests are for other users to take a quick look at short pieces of code to help you trouble shoot your issues.  We advise using <a href="www.codepen.co.uk" target="_blank">Code Pen</a> You will need to set up an account and then once you've created a codepen you can share the link in the bottom right hand corner of the code pen.  If you have another link to share a snippet please feel free to use that instead.  </p>
          <form class="input-form" method="POST" action="">
              {{ formCode.hidden_tag() }}
              <!-- Post Input -->
@@ -89,7 +94,7 @@
              </div>
              <div class="input-group ">
                  <span class="input-group-text register-icon"></span>
-                 {{ formCode.post_input(placeholder="Add Post", class="form-control") }}
+                 {{ formCode.post_input(placeholder="Decription", class="form-control") }}
                  {% for error in formCode.post_input.errors %}
                  <small class="text-red">{{ error }}</small>
                  {% endfor %}
@@ -106,6 +111,7 @@
              {{ formCode.submit(class="col-12 mt-4 btn register-btn") }}
 
          </form>
+         
      </div>
  </div>
  {% endblock %}

@@ -2,9 +2,15 @@
 
 {% block content %}
 
+<div class="container">
+    <div class="row">
+
 {% for user in users %}
-<div style="border: red solid 1px">
+<div class="col-sm-1 col-md-4 col-lg-3 flex">
+    <div class="post_card">
+        <div class="post_item">
     {% if user.profile_image %}
+    
     <img src="{{user.profile_image}}" alt="Image of {{user.username}}">
     {% else %}
     <img src="{{ url_for('static', filename='img/logo_32.png') }}" class="responsive-img profile_image"
@@ -14,6 +20,11 @@
     <p>Tech Stack: {{user.tech_stack}}</p>
     <p>Occupation: {{user.occupation}}</p>
 </div>
+</div>
+</div>
 
 {% endfor %}
+
+    </div>
+</div>
 {% endblock %}

@@ -4,8 +4,8 @@
 <div>
     <p>Post Title:{{post.post_title}}</p>
     <p>Post Type: {{post.post_type}}</p>
-    {{post.post_input}}
-    <p>Post Author: {{post.author}}</p>
+    <p>{{post.post_input}}</p>
+    <p><a href={{url_for('profile', username=post.username)}}>Author: {{post.author}}</a></p>
     {% if post.code_pen %}
     <a href={{post.code_pen}} target="_blank">My Code Pen</a>
     {% endif %}
@@ -36,18 +36,22 @@
     {{ form.submit(class="col-12 mt-4 btn register-btn") }}
 
 </form>
-
+<div class="continer">
+    <h5>Comments</h5>
+<div class="row">
 {% for comment in post.comments %}
-{% if comment.user_id == session_user %}
-<div style="border: red solid 1px">
-    <p class="none" id="">{{comment.comment_id}}</p>
-    <p>Author{{comment.author}}</p>
+{% if comment.comment_user_id == session_user %}
+<div class="col-12 post_card">
+    <div class="post_item">
+    <p><a href={{url_for('profile', username=post.username)}}>Author: {{comment.author}}</a></p>
     <p>Comment: {{comment.comment_input}}</p>
     <form method="POST" action="{{ url_for('delete_comment', post=post._id, comment_id=comment.comment_id)}}" id="
         delete-comment-form">
         <button type="submit" class=" btn btn-yellow btn-red">Delete Comment</button>
     </form>
+    </div>
 </div>
+
 
 {% else %}
 <div style="border: red solid 1px">
@@ -57,6 +61,8 @@
 {% endif %}
 
 {% endfor %}
+</div>
+</div>
 
 
 
