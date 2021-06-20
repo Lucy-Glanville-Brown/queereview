@@ -7,6 +7,9 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from datetime import date, datetime
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 from forms import *
 from utilities import *
 if os.path.exists('env.py'):
@@ -18,6 +21,11 @@ app = Flask(__name__)
 app.config['MONGO_DBNAME'] = os.environ.get('MONGO_DBNAME')
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.secret_key = os.environ.get('SECRET_KEY')
+cloudinary.config(
+    cloud_name=os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.environ.get("CLOUDINARY_API_KEY"),
+    api_secret=os.environ.get("CLOUDINARY_API_SECRET")
+)
 
 mongo = PyMongo(app)
 
@@ -109,10 +117,8 @@ def edit_post(post_id):
                              post_update
                          })
 
-
-
         flash('Your post has been successfully update.')
-        return redirect(url_for('profile', username=session['username']))
+        return redirect(url_for('post', post_id=post_id))
 
     return render_template('edit_post.html', post=post, formCode=formCode,
                            formReview=formReview,
@@ -237,6 +243,28 @@ def post(post_id):
     return render_template('post.html', post=post, form=form, session_user=session_user)
 
 
+@app.route("/<username>/upload_image", methods=["GET", "POST"])
+def upload_image(username):
+
+    if request.method == 'POST':
+        for item in request.files.getlist("user_image"):
+            filename = secure_filename(item.filename)
+            filename, file_extension = os.path.splitext(filename)
+            public_id_image = (username + '/q_auto:low/' + filename)
+            cloudinary.uploader.unsigned_upload(
+                item, "puppy_image", cloud_name='puppyplaymates',
+                folder='/doubleshamrocks/', public_id=public_id_image)
+            image_url = (
+                "https://res.cloudinary.com/puppyplaymates/image/upload/c_fit,h_250,w_250/doubleshamrocks/"
+                + public_id_image + file_extension)
+
+            mongo.db.users.update(
+                {"username": session['username']},
+                {"$set": {"profile_image": image_url}})
+
+        return redirect(url_for('profile', username=session['username']))
+    return render_template("profile.html", username=session['username'])
+
 # Register
 @ app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -283,19 +311,27 @@ def register():
 
 @ app.route('/delete_profile/<username>', methods=['GET', 'POST'])
 def delete_profile(username):
-    mongo.db.users.remove({'username': session['username']})
-    flash("Your profile has been succesfully deleted")
-    return redirect(url_for('index'))
+    if session['username'] == username:
+        mongo.db.users.remove({'username': session['username']})
+        flash("Your profile has been succesfully deleted")
+    return redirect(url_for('/'))
 
 
 @ app.route('/delete_comment/<post>/<comment_id>', methods=['GET', 'POST'])
 def delete_comment(post, comment_id):
-
     mongo.db.posts.update_one(
         {'_id': ObjectId(post)},
         {'$pull': {'comments': {'comment_id': ObjectId(comment_id)}}})
     flash("Your profile has been succesfully deleted")
     return redirect(url_for('post', post_id=post))
+   
+
+@ app.route('/delete_post/<post_id>', methods=['GET', 'POST'])
+def delete_post(post_id):
+    
+    mongo.db.posts.remove({'_id': ObjectId(post_id)})
+    flash("Your post has been succesfully deleted")
+    return redirect(url_for('profile', username=session['username']))
 
 
 @ app.route('/logout')
