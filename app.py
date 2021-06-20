@@ -82,18 +82,10 @@ def edit_profile(username):
                              "about_me": request.form['about_me'],
                          }})
 
-<<<<<<< HEAD
-        flash('Your details have been successfully updated')
-        return redirect(url_for('profile', username=username))
-
-    return render_template('edit_profile.html', username=username, form=form)
-=======
         flash('Your details have been successfully update.')
         return redirect(url_for('profile'))
 
     return render_template('edit_profile.html', username=session['username'], user_profile=user_profile, form=form)
-
->>>>>>> 2d1b544983414d028d5f3ac97c2fa55a268eca19
 
 
 @app.route('/review_stream')
@@ -178,24 +170,14 @@ def post(post_id):
         post = mongo.db.posts.find_one(
             {'_id': ObjectId(post_id)})
 
-<<<<<<< HEAD
-=======
         session_user = mongo.db.users.find_one(
             {'username': session['user']})['_id']
 
->>>>>>> 2d1b544983414d028d5f3ac97c2fa55a268eca19
         if not post:
             flash('Woops post not found')
             return render_template('profile_not_found.html')
 
-<<<<<<< HEAD
-        print('outside')
-
         if form.validate_on_submit():
-            print('inside')
-=======
-        if form.validate_on_submit():
->>>>>>> 2d1b544983414d028d5f3ac97c2fa55a268eca19
             comment_date = datetime.now().strftime('%d/%m/%y, %H:%M')
             comment_input = request.form['comment_input']
             comment_id = ObjectId()
@@ -212,11 +194,6 @@ def post(post_id):
                     'comment_input': comment_input,
                 }}})
 
-<<<<<<< HEAD
-            print('added')
-
-=======
->>>>>>> 2d1b544983414d028d5f3ac97c2fa55a268eca19
             return render_template(
                 'post.html',
                 post=post, form=form
@@ -226,11 +203,7 @@ def post(post_id):
         flash("Please log in to view this page")
         return redirect(url_for('login'))
 
-<<<<<<< HEAD
-    return render_template('post.html', post=post, form=form)
-=======
     return render_template('post.html', post=post, form=form, session_user=session_user)
->>>>>>> 2d1b544983414d028d5f3ac97c2fa55a268eca19
 
 
 # Register
