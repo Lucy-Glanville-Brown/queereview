@@ -40,16 +40,18 @@
     {% else %}
     <p><span class="profile-items">My Posts: None added </span></p>
     {% endif %}
-    {% if user_profile.commented_on %}
+    <!-- {% if my_comments %}
     <ul>
-        {% for comment in user_profile.commented_on %}
-        <li>{{post.comment.comment_title}}</li>
-
+        {% for com in my_comments %}
+        {% for com in comment %}
+        <li>{{com.comments}}</li>
+        <li><a href="{{url_for('post', post_id=comment.post_comment_title)}}">{{com.post_title_comment}}</a></li>
+{%endfor%}
         {% endfor %}
     </ul>
     {% else %}
     <p><span class="profile-items">Posts I've commented on: None added </span></p>
-    {% endif %}
+    {% endif %} -->
 
     {% if user_profile.username == session.username %}
 

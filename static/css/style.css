@@ -18,6 +18,10 @@ html{
     margin:0px 5vw;   
 }
 
+.container {
+    flex: 1 0 auto;
+}
+
 .container{
     padding-top:80px;
 }
@@ -64,4 +68,33 @@ html{
 
 #review_form {
     display: none;
+}
+
+li {
+    list-style: none;
+}
+
+.post_card {
+    display: flex;
+    width: 100%;
+}     
+.post_item {
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: rgba(26, 188, 156, 0.9);
+    padding: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    
+}
+
+.flex {
+    display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding-bottom: 1%;
 }
