@@ -171,7 +171,7 @@ def post(post_id):
             {'_id': ObjectId(post_id)})
 
         session_user = mongo.db.users.find_one(
-            {'username': session['user']})['_id']
+            {'username': session['username']})['_id']
 
         if not post:
             flash('Woops post not found')
