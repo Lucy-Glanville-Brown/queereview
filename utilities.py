@@ -91,3 +91,64 @@ def review_post(user_pronouns, username, user_id, post_type):
     }
     return post
 
+
+def update_post():
+    post_type = request.form['post_type']
+
+    if post_type == "general":
+        post_edit = edit_general_post()
+        return post_edit
+
+    elif post_type == "code":
+        post_edit = edit_code_post()
+        return post_edit
+
+    elif post_type == "review":
+        post_edit = edit_review_post()
+        return post_edit
+
+    else:
+        flash("Ops that type is unknown please try")
+
+
+def edit_general_post():
+
+    post_input = request.form['post_input']
+    post_title = request.form['post_title']
+
+    edit_post = {
+        'post_title': post_title,
+        'post_input': post_input,
+    }
+    return edit_post
+
+
+def edit_code_post():
+    post_input = request.form['post_input']
+    post_title = request.form['post_title']
+    code_pen = request.form['code_pen']
+
+    edit_post = {
+        'post_title': post_title,
+        'post_input': post_input,
+        'code_pen': code_pen,
+
+    }
+    return edit_post
+
+
+def edit_review_post():
+
+    post_input = request.form['post_input']
+    post_title = request.form['post_title']
+    github = request.form['github']
+    deployed = request.form['deployed']
+    
+    edi_post = {
+        'post_title': post_title,
+        'post_input': post_input,
+        'deployed': deployed,
+        'github': github,
+    }
+    return edit_post
+
