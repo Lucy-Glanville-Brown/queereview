@@ -31,7 +31,27 @@
 
          {{ form.submit(class="col-12 mt-4 btn register-btn") }}
 
-</form>         
+</form> 
+
+{% for comment in post.comments %}
+{% if comment.user_id == session_user %}
+<div style="border: red solid 1px">
+    <p>Author{{comment.author}}</p>
+    <p>Comment: {{comment.comment_input}}</p>
+    <a href="">Edit Comment</a>
+    <a href="#delete_comment" data-target="delete_comment"
+                        class=" modal-trigger">Delete Profile</a>
+</div>
+{% else %}
+<div style="border: red solid 1px">
+    <p>Author{{comment.author}}</p>
+    <p>Comment: {{comment.comment_input}}</p>
+</div>
+{% endif %}
+
+{% endfor %}
+
+{% include "includes/delete_comment.html" %}
 
 
 {% endblock %}

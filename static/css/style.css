@@ -14,11 +14,16 @@ html{
     box-sizing: border-box;
 }
 
-.container{
-    padding-top:60px;
+.fixed-top {
+    margin:0px 5vw;   
 }
 
-header.masthead .masthead-subheading {
+.container{
+    padding-top:80px;
+}
+
+header.masthead 
+.masthead-subheading {
     font-size: 2.25rem;
     font-style: italic;
     line-height: 2.25rem;

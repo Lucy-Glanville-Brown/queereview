@@ -4,7 +4,7 @@
 
 {% for user in users %}
 <div style="border: red solid 1px">
-    <p>Username:{{user.username}}({{user.personal_pronouns}})</p>
+    <p><a class="nav-link" href="{{ url_for('profile', username=user.username ) }}">Username:{{user.username}}({{user.personal_pronouns}})</a></p>
     <p>Tech Stack: {{user.tech_stack}}</p>
     <p>Occupation: {{user.occupation}}</p>
 </div>

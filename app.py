@@ -67,6 +67,9 @@ def edit_profile(username):
     """ Edit Profile page
     Finds the profile from the username and allow user to update profile details
     """
+
+    user_profile = mongo.db.users.find_one({"username": session['username']})
+
     form = UpdateProfileForm()
     if form.validate_on_submit():
         users = mongo.db.users
@@ -82,7 +85,7 @@ def edit_profile(username):
         flash('Your details have been successfully update.')
         return redirect(url_for('profile'))
 
-    return render_template('edit_profile.html', username=username, form=form)
+    return render_template('edit_profile.html', username=session['username'], user_profile=user_profile, form=form)
 
 
 @app.route('/review_stream')
@@ -167,14 +170,14 @@ def post(post_id):
         post = mongo.db.posts.find_one(
             {'_id': ObjectId(post_id)})
 
+        session_user = mongo.db.users.find_one(
+            {'username': session['username']})['_id']
+
         if not post:
             flash('Woops post not found')
             return render_template('profile_not_found.html')
 
-        print('outside')
-
         if form.validate_on_submit():
-            print('inside')
             comment_date = datetime.now().strftime('%d/%m/%y, %H:%M')
             comment_input = request.form['comment_input']
             comment_id = ObjectId()
@@ -184,14 +187,12 @@ def post(post_id):
             mongo.db.posts.update_one(
                 {'_id': ObjectId(post_id)},
                 {'$addToSet': {'comments': {
-                    '_id': comment_id,
+                    'comment_id': comment_id,
                     'date': comment_date,
                     'author': session_user['username'] + " " + session_user['personal_pronouns'],
                     'user_id': session_user['_id'],
                     'comment_input': comment_input,
                 }}})
-
-            print('added')
 
             return render_template(
                 'post.html',
@@ -202,7 +203,7 @@ def post(post_id):
         flash("Please log in to view this page")
         return redirect(url_for('login'))
 
-    return render_template('post.html', post=post, form=form)
+    return render_template('post.html', post=post, form=form, session_user=session_user)
 
 
 # Register
@@ -252,6 +253,16 @@ def register():
 @ app.route('/delete_profile/<username>', methods=['GET', 'POST'])
 def delete_profile(username):
     mongo.db.users.remove({'username': session['username']})
+    flash("Your profile has been succesfully deleted")
+    return redirect(url_for('index'))
+
+
+@ app.route('/delete_comment/<post_id>', methods=['GET', 'POST'])
+def delete_comment(post_id, comment_id):
+    mongo.db.posts.update_one(
+                {'post_id': post_id},
+                {'$pull': {'comments': {'comment_id': ObjectId(comment_id)}}})
+    mongo.db.posts.remove({'username': session['username']})
     flash("Your profile has been succesfully deleted")
     return redirect(url_for('index'))
 
