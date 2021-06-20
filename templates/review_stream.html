@@ -2,14 +2,14 @@
 
 {% block content %}
 <a class="btn btn-danger" href="{{ url_for('upload_post') }}">Add a Post</a>
-{% for post in posts%}
+{% for post in posts | reverse %}
 <div style="border: red solid 1px">
     <a href="{{url_for('post', post_id=post._id)}}">Full post</a>
-    <p>{{post._id}}</p>
     <p>Post Title:{{post.post_title}}</p>
     <p>Post Type: {{post.post_type}}</p>
-    {{post.post_input}}
+    <p>{{post.post_input}}</p>
     <p>Post Author: {{post.author}}</p>
+    <p>{{post.date}}</p>
     {% if post.code_pen %}
         <a href={{post.code_pen}} target="_blank">My Code Pen</a>
     {% endif %}
