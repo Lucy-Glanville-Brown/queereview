@@ -1,12 +1,20 @@
 
-var exampleModal = document.getElementById('exampleModal')
-exampleModal.addEventListener('show.bs.modal', function (event) {
-  // Button that triggered the modal
-  var button = event.relatedTarget
-  // Extract info from data-bs-* attributes
-  var comment_id = button.getAttribute('data-bs-whatever')
- 
-//   comment_id = "ObjectId('"+ comment_id + "')"
-//   document.getElementById('delete-comment-form').action = "{{ url_for('delete_comment', post=post._id, comment_id="+ comment_id+"))}}";
-})
+
+function showhide(toggleID){
+    if (toggleID == 'general_form') {
+
+        document.getElementById('general_form').style.display = 'block'
+        document.getElementById('review_form').style.display = 'none'
+        document.getElementById('review_form').style.display = 'none'
+    } else if (toggleID == 'review_form') {
+        document.getElementById('general_form').style.display = 'none'
+        document.getElementById('review_form').style.display = 'block'
+        document.getElementById('code_form').style.display = 'none'
+    } else if (toggleID == 'code_form') {
+        document.getElementById('general_form').style.display = 'none'
+        document.getElementById('review_form').style.display = 'none'
+        document.getElementById('code_form').style.display = 'block'
+    }}
+
+
 

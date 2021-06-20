@@ -109,10 +109,8 @@ def edit_post(post_id):
                              post_update
                          })
 
-
-
         flash('Your post has been successfully update.')
-        return redirect(url_for('profile', username=session['username']))
+        return redirect(url_for('post', post_id=post_id))
 
     return render_template('edit_post.html', post=post, formCode=formCode,
                            formReview=formReview,
@@ -283,19 +281,27 @@ def register():
 
 @ app.route('/delete_profile/<username>', methods=['GET', 'POST'])
 def delete_profile(username):
-    mongo.db.users.remove({'username': session['username']})
-    flash("Your profile has been succesfully deleted")
-    return redirect(url_for('index'))
+    if session['username'] == username:
+        mongo.db.users.remove({'username': session['username']})
+        flash("Your profile has been succesfully deleted")
+    return redirect(url_for('/'))
 
 
 @ app.route('/delete_comment/<post>/<comment_id>', methods=['GET', 'POST'])
 def delete_comment(post, comment_id):
-
     mongo.db.posts.update_one(
         {'_id': ObjectId(post)},
         {'$pull': {'comments': {'comment_id': ObjectId(comment_id)}}})
     flash("Your profile has been succesfully deleted")
     return redirect(url_for('post', post_id=post))
+   
+
+@ app.route('/delete_post/<post_id>', methods=['GET', 'POST'])
+def delete_post(post_id):
+    
+    mongo.db.posts.remove({'_id': ObjectId(post_id)})
+    flash("Your post has been succesfully deleted")
+    return redirect(url_for('profile', username=session['username']))
 
 
 @ app.route('/logout')
