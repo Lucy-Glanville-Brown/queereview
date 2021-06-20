@@ -70,40 +70,20 @@ def edit_profile(username):
     form = UpdateProfileForm()
     if form.validate_on_submit():
         users = mongo.db.users
-        users.update_one({"username": username}, 
-        {'$set': {
-            "email": request.form['email'],
-            "personal_pronouns": request.form['personal_pronouns'],
-            "occupation": request.form['occupation'],
-            "tech_stack": request.form['tech_stack'],
-            "about_me": request.form['about_me'],
-        }}) 
+        users.update_one({"username": username},
+                         {'$set': {
+                             "email": request.form['email'],
+                             "personal_pronouns": request.form['personal_pronouns'],
+                             "occupation": request.form['occupation'],
+                             "tech_stack": request.form['tech_stack'],
+                             "about_me": request.form['about_me'],
+                         }})
 
         flash('Your details have been successfully update.')
         return redirect(url_for('profile'))
 
-    if 'username' in session:
-        user_profile = mongo.db.users.find_one(
-            {'username': session['username']})
-        user_session = mongo.db.users.find_one(
-            {'username': username})
-
-        user_id = mongo.db.users.find_one(
-            {'username': session['username']})['_id']
-          
-        return render_template(
-            'edit_profile.html',
-            username=username,
-            user_profile=user_profile,
-            user_session=user_session,
-            form=form
-        )
-
-    else:
-        flash("Please log in to view this page")
-        return redirect(url_for('login'))
-
     return render_template('edit_profile.html', username=username, form=form)
+
 
 @app.route('/review_stream')
 def review_stream():
@@ -114,7 +94,12 @@ def review_stream():
 @app.route('/users')
 def users():
     users = mongo.db.users.find()
-    return render_template('users.html', users=users)    
+    return render_template('users.html', users=users)
+
+
+@app.route('/ally')
+def ally():
+    return render_template('ally.html')  
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -165,13 +150,63 @@ def upload_post():
         mongo.db.posts.insert_one(post)
 
         return redirect(url_for('review_stream'))
-    return render_template('upload_post.html', formCode = formCode,
-    formReview = formReview,
-    formGeneral = formGeneral)
+    return render_template('upload_post.html', formCode=formCode,
+                           formReview=formReview,
+                           formGeneral=formGeneral)
+
+
+@app.route('/post/<post_id>', methods=['GET', 'POST'])
+def post(post_id):
+    """ Post page
+    Finds the post from the username returns - user_profile
+    """
+
+    form = AddCommentForm()
+
+    if 'username' in session:
+        post = mongo.db.posts.find_one(
+            {'_id': ObjectId(post_id)})
+
+        if not post:
+            flash('Woops post not found')
+            return render_template('profile_not_found.html')
+
+        print('outside')
+
+        if form.validate_on_submit():
+            print('inside')
+            comment_date = datetime.now().strftime('%d/%m/%y, %H:%M')
+            comment_input = request.form['comment_input']
+            comment_id = ObjectId()
+            session_user = mongo.db.users.find_one(
+                {'username': session['username']})
+
+            mongo.db.posts.update_one(
+                {'_id': ObjectId(post_id)},
+                {'$addToSet': {'comments': {
+                    '_id': comment_id,
+                    'date': comment_date,
+                    'author': session_user['username'] + " " + session_user['personal_pronouns'],
+                    'user_id': session_user['_id'],
+                    'comment_input': comment_input,
+                }}})
+
+            print('added')
+
+            return render_template(
+                'post.html',
+                post=post, form=form
+            )
+
+    else:
+        flash("Please log in to view this page")
+        return redirect(url_for('login'))
+
+    return render_template('post.html', post=post, form=form)
 
 
 # Register
-@app.route("/register", methods=['GET', 'POST'])
+@ app.route("/register", methods=['GET', 'POST'])
 def register():
     '''
     CREATE.
@@ -190,7 +225,7 @@ def register():
         users = mongo.db.users
         # checks if the username is unique
         registered_user = mongo.db.users.find_one({'username':
-                                                   request.form['username']})
+                                                  request.form['username']})
         if registered_user:
             flash("Sorry, this username is already taken!")
             return redirect(url_for('register'))
@@ -214,11 +249,20 @@ def register():
     return render_template('register.html', form=form)
 
 
-@app.route('/delete_profile/<username>', methods=['GET', 'POST'])
+@ app.route('/delete_profile/<username>', methods=['GET', 'POST'])
 def delete_profile(username):
     mongo.db.users.remove({'username': session['username']})
     flash("Your profile has been succesfully deleted")
-    return redirect(url_for('index'))    
+    return redirect(url_for('index'))
+
+
+@ app.route('/logout')
+def logout():
+    """ Removes session cookie and tells user they are logged out
+    """
+    session.pop('username')
+    flash("You have been logged out")
+    return redirect(url_for('login'))
 
 
 if __name__ == '__main__':

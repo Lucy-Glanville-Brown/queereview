@@ -6,15 +6,15 @@ from wtforms.fields.html5 import EmailField, URLField
 
 class RegisterForm(FlaskForm):
     username = StringField('Username',
-                           validators=[DataRequired(), Length(min=3, max=15)])
+                           validators=[DataRequired(), Length(min=3, max=35)])
     password = PasswordField('Password',
                              validators=[DataRequired(),
-                                         Length(min=3, max=15)])
+                                         Length(min=3, max=35)])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(),
                                                  EqualTo('password')])
     email = EmailField('Email Address',
-                       validators=[DataRequired(), Length(min=6, max=35)])
+                       validators=[DataRequired(), Length(min=6, max=100)])
     personal_pronouns = StringField('Personal Pronouns',
                                     validators=[DataRequired(),
                                                 Length(min=2, max=20)])
@@ -22,7 +22,7 @@ class RegisterForm(FlaskForm):
                              validators=[DataRequired(),
                                          Length(min=6, max=35)])
     tech_stack = StringField('Tech Stack', validators=[DataRequired(),
-                                                       Length(min=6, max=35)])
+                                                       Length(min=6, max=150)])
     about_me = TextAreaField('About Me', validators=[Length(min=6, max=1000)])
     submit = SubmitField('Register')
 
@@ -84,4 +84,11 @@ class UpdateProfileForm(FlaskForm):
     tech_stack = StringField('Tech Stack', validators=[DataRequired(),
                                                        Length(min=6, max=35)])
     about_me = TextAreaField('About Me', validators=[Length(min=6, max=1000)])
+    submit = SubmitField('Update')
+
+
+class AddCommentForm(FlaskForm):
+    comment_input = TextAreaField('Add Comment',
+                             validators=[DataRequired(), Length(
+                                 min=3, max=3000)])  
     submit = SubmitField('Update')
