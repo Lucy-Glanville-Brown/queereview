@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<a class="btn btn-danger" href="{{ url_for('upload_post') }}">Add a Post</a>
 {% for post in posts%}
 <div style="border: red solid 1px">
     <a href="{{url_for('post', post_id=post._id)}}">Full post</a>
