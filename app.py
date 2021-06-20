@@ -70,24 +70,21 @@ def edit_profile(username):
     form = UpdateProfileForm()
     if form.validate_on_submit():
         users = mongo.db.users
-<<<<<<< HEAD
         user_profile = mongo.db.users.find_one(
             {'username': session['username']})
         updated_details = {
-=======
         
-        users.update_one({"username": username}, 
+        users.update_one({"username": username},
         {'$set' : {
->>>>>>> dc43adfb71fde28d1ca56fe6f8ffc77a20a112b6
             "email": request.form['email'],
             "personal_pronouns": request.form['personal_pronouns'],
             "occupation": request.form['occupation'],
             "tech_stack": request.form['tech_stack'],
-            "about_me": request.form['about_me'],
-        }}) 
+            "about_me": request.form['about_me']
+        }})
 
-        flash('Your details have been successfully update.')
-        return redirect(url_for('profile'))
+        flash('Your details have been successfully updated')
+        return redirect(url_for('profile', username=username))
 
     if 'username' in session:
         user_profile = mongo.db.users.find_one(
@@ -112,6 +109,14 @@ def edit_profile(username):
         return redirect(url_for('login'))
 
     return render_template('edit_profile.html', username=username, form=form)
+
+
+@app.route('/delete_profile/<username>', methods=['GET', 'POST'])
+def delete_profile(username):
+    mongo.db.users.remove({'username': session['username']})
+    flash("Your profile has been succesfully deleted")
+    return redirect(url_for('index'))
+
 
 @app.route('/review_stream')
 def review_stream():
