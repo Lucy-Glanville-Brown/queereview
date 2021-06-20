@@ -16,6 +16,8 @@
     <a href={{post.deployed}} target="_blank">Deployed Link</a>
     {% endif %}
 
+    <a href="{{ url_for('edit_post', post_id=post._id)}}">Edit Post</a>
+
 </div>
 
 <form class="input-form" method="POST" action="">
@@ -39,7 +41,6 @@
     <p class="none" id="">{{comment.comment_id}}</p>
     <p>Author{{comment.author}}</p>
     <p>Comment: {{comment.comment_input}}</p>
-    <a href="">Edit Comment</a>
     <form method="POST" action="{{ url_for('delete_comment', post=post._id, comment_id=comment.comment_id)}}" id="
         delete-comment-form">
         <button type="submit" class=" btn btn-yellow btn-red">Delete Comment</button>
