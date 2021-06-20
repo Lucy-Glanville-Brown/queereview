@@ -68,7 +68,7 @@ def edit_profile(username):
     Finds the profile from the username and allow user to update profile details
     """
 
-    user_profile = mongo.db.users.find_one({"username": session['user']})
+    user_profile = mongo.db.users.find_one({"username": session['username']})
 
     form = UpdateProfileForm()
     if form.validate_on_submit():
@@ -171,7 +171,7 @@ def post(post_id):
             {'_id': ObjectId(post_id)})
 
         session_user = mongo.db.users.find_one(
-            {'username': session['user']})['_id']
+            {'username': session['username']})['_id']
 
         if not post:
             flash('Woops post not found')
@@ -187,7 +187,7 @@ def post(post_id):
             mongo.db.posts.update_one(
                 {'_id': ObjectId(post_id)},
                 {'$addToSet': {'comments': {
-                    '_id': comment_id,
+                    'comment_id': comment_id,
                     'date': comment_date,
                     'author': session_user['username'] + " " + session_user['personal_pronouns'],
                     'user_id': session_user['_id'],
@@ -253,6 +253,16 @@ def register():
 @ app.route('/delete_profile/<username>', methods=['GET', 'POST'])
 def delete_profile(username):
     mongo.db.users.remove({'username': session['username']})
+    flash("Your profile has been succesfully deleted")
+    return redirect(url_for('index'))
+
+
+@ app.route('/delete_comment/<post_id>', methods=['GET', 'POST'])
+def delete_comment(post_id, comment_id):
+    mongo.db.posts.update_one(
+                {'post_id': post_id},
+                {'$pull': {'comments': {'comment_id': ObjectId(comment_id)}}})
+    mongo.db.posts.remove({'username': session['username']})
     flash("Your profile has been succesfully deleted")
     return redirect(url_for('index'))
 

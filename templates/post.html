@@ -39,7 +39,8 @@
     <p>Author{{comment.author}}</p>
     <p>Comment: {{comment.comment_input}}</p>
     <a href="">Edit Comment</a>
-    <a href="">Delete Comment</a>
+    <a href="#delete_comment" data-target="delete_comment"
+                        class=" modal-trigger">Delete Profile</a>
 </div>
 {% else %}
 <div style="border: red solid 1px">
@@ -49,6 +50,8 @@
 {% endif %}
 
 {% endfor %}
+
+{% include "includes/delete_comment.html" %}
 
 
 {% endblock %}
