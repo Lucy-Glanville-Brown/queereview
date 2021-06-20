@@ -88,6 +88,37 @@ def edit_profile(username):
     return render_template('edit_profile.html', username=session['username'], user_profile=user_profile, form=form)
 
 
+@app.route('/edit_post/<post_id>', methods=['GET', 'POST'])
+def edit_post(post_id):
+    """ Edit Profile page
+    Finds the profile from the username and allow user to update profile details
+    """
+
+    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+
+    formCode = AddCodeForm()
+    formReview = AddReviewForm()
+    formGeneral = AddGeneralForm()
+
+    if formCode.validate_on_submit() or formReview.validate_on_submit() or formGeneral.validate_on_submit():
+
+        post_update = update_post()
+
+        mongo.db.posts.update_one({"_id": ObjectId(post_id)},
+                         {'$set': 
+                             post_update
+                         })
+
+
+
+        flash('Your post has been successfully update.')
+        return redirect(url_for('profile', username=session['username']))
+
+    return render_template('edit_post.html', post=post, formCode=formCode,
+                           formReview=formReview,
+                           formGeneral=formGeneral)
+
+
 @app.route('/review_stream')
 def review_stream():
     posts = mongo.db.posts.find()
@@ -102,7 +133,7 @@ def users():
 
 @app.route('/ally')
 def ally():
-    return render_template('ally.html')  
+    return render_template('ally.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -259,10 +290,10 @@ def delete_profile(username):
 
 @ app.route('/delete_comment/<post>/<comment_id>', methods=['GET', 'POST'])
 def delete_comment(post, comment_id):
- 
+
     mongo.db.posts.update_one(
-                {'_id': ObjectId(post)},
-                {'$pull': {'comments': {'comment_id': ObjectId(comment_id)}}})
+        {'_id': ObjectId(post)},
+        {'$pull': {'comments': {'comment_id': ObjectId(comment_id)}}})
     flash("Your profile has been succesfully deleted")
     return redirect(url_for('post', post_id=post))
 
