@@ -97,6 +97,11 @@ def users():
     return render_template('users.html', users=users)
 
 
+@app.route('/ally')
+def ally():
+    return render_template('ally.html')  
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
