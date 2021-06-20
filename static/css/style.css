@@ -53,3 +53,15 @@ html{
     background-color: #198754;
     border-color: #ffc800;
 }
+
+#general_form {
+    display: none;
+}
+
+#code_form {
+    display: none;
+}
+
+#review_form {
+    display: none;
+}

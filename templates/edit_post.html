@@ -20,7 +20,7 @@
          </div>
          <div class="input-group ">
              <span class="input-group-text register-icon"></span>
-             {{ formGeneral.post_input(placeholder=post.post_input, value=post.post_input, class="form-control") }}
+             {{ formGeneral.post_input(placeholder=post.post_input, value=post.post_input, class="form-control", id="gen") }}
              {% for error in formGeneral.post_input.errors %}
              <small class="text-red">{{ error }}</small>
              {% endfor %}
@@ -102,7 +102,7 @@
              {% endfor %}
          </div>
 
-         {{ formCode.submit(class="col-12 mt-4 btn register-btn") }}
+         {{ formCode.submit(class="col-12 mt-4 btn register-btn")}}
 
      </form>
 </div>

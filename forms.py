@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, TextAreaField, RadioField
 from wtforms.validators import DataRequired, Length, EqualTo, url
 from wtforms.fields.html5 import EmailField, URLField
+from wtforms.widgets import TextArea
 
 
 class RegisterForm(FlaskForm):
@@ -72,6 +73,7 @@ class AddGeneralForm(FlaskForm):
     
     submit = SubmitField('Add Post')    
 
+
 class UpdateProfileForm(FlaskForm):
     email = EmailField('Email Address',
                        validators=[DataRequired(), Length(min=6, max=35)])
@@ -91,4 +93,4 @@ class AddCommentForm(FlaskForm):
     comment_input = TextAreaField('Add Comment',
                              validators=[DataRequired(), Length(
                                  min=3, max=3000)])  
-    submit = SubmitField('Update')
+    submit = SubmitField('Add Comment')
