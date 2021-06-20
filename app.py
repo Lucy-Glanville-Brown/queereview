@@ -196,7 +196,7 @@ def post(post_id):
 
             return render_template(
                 'post.html',
-                post=post, form=form
+                post=post, form=form, post_id=post_id
             )
 
     else:
@@ -257,14 +257,14 @@ def delete_profile(username):
     return redirect(url_for('index'))
 
 
-@ app.route('/delete_comment/<post_id>', methods=['GET', 'POST'])
-def delete_comment(post_id, comment_id):
+@ app.route('/delete_comment/<post>/<comment_id>', methods=['GET', 'POST'])
+def delete_comment(post, comment_id):
+ 
     mongo.db.posts.update_one(
-                {'post_id': post_id},
+                {'_id': ObjectId(post)},
                 {'$pull': {'comments': {'comment_id': ObjectId(comment_id)}}})
-    mongo.db.posts.remove({'username': session['username']})
     flash("Your profile has been succesfully deleted")
-    return redirect(url_for('index'))
+    return redirect(url_for('post', post_id=post))
 
 
 @ app.route('/logout')
