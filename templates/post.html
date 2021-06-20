@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <p>Post Title:{{post.post_title}}</p>
+    <p>Post Type: {{post.post_type}}</p>
+    {{post.post_input}}
+    <p>Post Author: {{post.author}}</p>
+    {% if post.code_pen %}
+        <a href={{post.code_pen}} target="_blank">My Code Pen</a>
+    {% endif %}
+    {% if post.github %}
+        <a href={{post.github}} target="_blank">GitHub Link</a>
+    {% endif %}    
+    {% if post.deployed %}
+        <a href={{post.deployed}} target="_blank">Deployed Link</a>
+    {% endif %}      
+    
+</div>
+
+<form class="input-form" method="POST" action="">
+         {{ form.hidden_tag() }}
+         <!-- Username -->
+         <div class="input-group ">
+             <span class="input-group-text register-icon"></span>
+             {{ form.comment_input(placeholder="Add Comment", class="form-control") }}
+             {% for error in form.comment_input.errors %}
+             <small class="text-red">{{ error }}</small>
+             {% endfor %}
+         </div>
+
+         {{ form.submit(class="col-12 mt-4 btn register-btn") }}
+
+</form> 
+
+{% for comment in post.comments %}
+{% if comment.user_id == session_user %}
+<div style="border: red solid 1px">
+    <p>Author{{comment.author}}</p>
+    <p>Comment: {{comment.comment_input}}</p>
+    <a href="">Edit Comment</a>
+    <a href="">Delete Comment</a>
+</div>
+{% else %}
+<div style="border: red solid 1px">
+    <p>Author{{comment.author}}</p>
+    <p>Comment: {{comment.comment_input}}</p>
+</div>
+{% endif %}
+
+{% endfor %}
+
+
+{% endblock %}

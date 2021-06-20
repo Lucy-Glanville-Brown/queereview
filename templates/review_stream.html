@@ -4,13 +4,22 @@
 
 {% for post in posts%}
 <div style="border: red solid 1px">
+    <a href="{{url_for('post', post_id=post._id)}}">Full post</a>
+    <p>{{post._id}}</p>
     <p>Post Title:{{post.post_title}}</p>
     <p>Post Type: {{post.post_type}}</p>
     {{post.post_input}}
     <p>Post Author: {{post.author}}</p>
     {% if post.code_pen %}
         <a href={{post.code_pen}} target="_blank">My Code Pen</a>
+    {% endif %}
+    {% if post.github %}
+        <a href={{post.github}} target="_blank">GitHub Link</a>
     {% endif %}    
+    {% if post.deployed %}
+        <a href={{post.deployed}} target="_blank">Deployed Link</a>
+    {% endif %}      
+    
 </div>
 {% endfor %}
 {% endblock %}
