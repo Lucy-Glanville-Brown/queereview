@@ -25,12 +25,19 @@ html{
 .container{
     padding-top:80px;
 }
+
+.navbar-light 
+.navbar-brand{
+    color: rgba(131,53,131.9);
+    font-weight: 500;
+}
+
 /*---------------------hero image at home page*/
 .hero{
-    
+    background-image: url('/static/img/parade.jpg');
     background-position: center;
     background-repeat: no-repeat;
-    height: 19rem;
+    height:100%;
 }
 
 .hero_text{
