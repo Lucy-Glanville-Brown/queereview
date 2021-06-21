@@ -1,19 +1,43 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="hero-users">
+    <h2 class="top-head">All of our Lovely Humans</h2>
 
-{% for user in users %}
-<div style="border: red solid 1px">
-    {% if user.profile_image %}
-    <img src="{{user.profile_image}}" alt="Image of {{user.username}}">
-    {% else %}
-    <img src="{{ url_for('static', filename='img/logo_32.png') }}" class="responsive-img profile_image"
-    alt="Profile Image" />
-    {% endif %}
-    <p><a class="nav-link" href="{{ url_for('profile', username=user.username ) }}">Username:{{user.username}}({{user.personal_pronouns}})</a></p>
-    <p>Tech Stack: {{user.tech_stack}}</p>
-    <p>Occupation: {{user.occupation}}</p>
 </div>
 
-{% endfor %}
+<div class="container">
+    <div class="row stream">
+
+
+        {% for user in users | reverse %}
+        <div class="col-sm-1 col-md-4 col-lg-3 flex">
+
+            <div class="post_card">
+                <div class="post_item">
+                    {% if user.profile_image %}
+                    <a href="{{ url_for('profile', username=user.username ) }}">
+                        <img src="{{user.profile_image}}" class="profile_image" alt="Image of {{user.username}}">
+                    </a>
+                    {% else %}
+                    <a href="{{ url_for('profile', username=user.username ) }}">
+                        <img src="{{ url_for('static', filename='img/logo_32.png') }}"
+                            class=" profile_image" alt="Profile Image" />
+                    </a>
+                    {% endif %}
+                    <p class="sub-heading"><a
+                            href="{{ url_for('profile', username=user.username ) }}" class="sub-heading">{{user.username}}({{user.personal_pronouns}})</a>
+                    </p>
+                    <p>{{user.tech_stack}}</p>
+                    <p>{{user.occupation}}</p>
+
+                </div>
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
 {% endblock %}

@@ -38,8 +38,8 @@ def general_post(user_pronouns, username, user_id, post_type):
         'post_title': post_title,
         'author': username + " " + user_pronouns,
         'user_id': user_id,
+        'username': username,
         'post_input': post_input,
-        # 'img_url': user_session['image_url'],
         'post_type': post_type,
         'comments': []
     }
@@ -60,6 +60,7 @@ def code_post(user_pronouns, username, user_id, post_type):
         'post_title': post_title,
         'author': username + " " + user_pronouns,
         'user_id': user_id,
+        'username': username,
         'post_input': post_input,
         'post_type': post_type,
         'code_pen': code_pen,
@@ -82,6 +83,7 @@ def review_post(user_pronouns, username, user_id, post_type):
         'date': post_date,
         'post_title': post_title,
         'author': username + " " + user_pronouns,
+        'username': username,
         'user_id': user_id,
         'post_input': post_input,
         'post_type': post_type,
@@ -144,7 +146,7 @@ def edit_review_post():
     github = request.form['github']
     deployed = request.form['deployed']
     
-    edi_post = {
+    edit_post = {
         'post_title': post_title,
         'post_input': post_input,
         'deployed': deployed,

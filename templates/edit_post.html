@@ -2,37 +2,42 @@
 
 
  {% block content %}
+ <div class="hero-edit-post">
+    <h2 class="top-head">Edit Profile</h2>
+</div>
 
  <div class="add-post-div">
+     {{post_type}}
 
-    {% if post.post_type == 'general'%}
-    <div id="general_form">
-     <form class="input-form" method="POST" action="">
-         {{ formGeneral.hidden_tag() }}
-         <!-- Post Input -->
-         <div class="input-group ">
-            <input type="hidden" id="general" name="post_type" value="general">
-             <span class="input-group-text register-icon"></span>
-             {{ formGeneral.post_title(placeholder=post.post_title, value=post.post_title, class="form-control") }}
-             {% for error in formGeneral.post_title.errors %}
-             <small class="text-red">{{ error }}</small>
-             {% endfor %}
-         </div>
-         <div class="input-group ">
-             <span class="input-group-text register-icon"></span>
-             {{ formGeneral.post_input(placeholder=post.post_input, value=post.post_input, class="form-control", id="gen") }}
-             {% for error in formGeneral.post_input.errors %}
-             <small class="text-red">{{ error }}</small>
-             {% endfor %}
-         </div>
+     <div class="row align-items-center d-flex justify-content-center">
+         <div class="col-lg-6 my-3 my-lg-0">
+             {% if post.post_type == 'general'%}
+             <form class="input-form" method="POST" action="">
+                 {{ formGeneral.hidden_tag() }}
+                 <!-- Post Input -->
+                 <div class="input-group ">
+                     <input type="hidden" id="general" name="post_type" value="general">
+                     <span class="input-group-text register-icon"></span>
+                     {{ formGeneral.post_title(placeholder=post.post_title, value=post.post_title, class="form-control") }}
+                     {% for error in formGeneral.post_title.errors %}
+                     <small class="text-red">{{ error }}</small>
+                     {% endfor %}
+                 </div>
+                 <div class="input-group ">
+                     <span class="input-group-text register-icon"></span>
+                     <textarea name="post_input" id="id" cols="30" rows="10"
+                         class="form-control">{{post.post_input}}</textarea>
 
-         {{ formGeneral.submit(class="col-12 mt-4 btn register-btn") }}
+                     {% for error in formGeneral.post_input.errors %}
+                     <small class="text-red">{{ error }}</small>
+                     {% endfor %}
+                 </div>
 
-     </form>
-</div>
+                 {{ formGeneral.submit(class="col-12 mt-4 btn register-btn") }}
+
+             </form>
 {% endif %}
 {% if post.post_type == 'review'%}
-<div id="review">
      <form class="input-form" method="POST" action="">
          {{ formReview.hidden_tag() }}
          <!-- Post Input -->
@@ -46,7 +51,7 @@
          </div>
          <div class="input-group ">
              <span class="input-group-text register-icon"></span>
-             {{ formReview.post_input(placeholder=post.post_input, value=post.post_input, class="form-control") }}
+             <textarea name="post_input" id="id" cols="30" rows="10" class="form-control">{{post.post_input}}</textarea>
              {% for error in formReview.post_input.errors %}
              <small class="text-red">{{ error }}</small>
              {% endfor %}
@@ -69,11 +74,10 @@
          {{ formReview.submit(class="col-12 mt-4 btn register-btn") }}
 
      </form>
-</div>
 {% endif %}
 
 {% if post.post_type == 'code'%}
-<div id="code_form">
+
 
      <form class="input-form" method="POST" action="">
          {{ formCode.hidden_tag() }}
@@ -88,7 +92,7 @@
          </div>
          <div class="input-group ">
              <span class="input-group-text register-icon"></span>
-             {{ formCode.post_input(placeholder=post.post_input, value=post.post_input, class="form-control") }}
+             <textarea name="post_input" id="id" cols="30" rows="10" class="form-control">{{post.post_input}}</textarea>
              {% for error in formCode.post_input.errors %}
              <small class="text-red">{{ error }}</small>
              {% endfor %}
@@ -105,7 +109,9 @@
          {{ formCode.submit(class="col-12 mt-4 btn register-btn")}}
 
      </form>
-</div>
+
 {% endif %}
+    </div>
+</div>
  </div>
  {% endblock %}

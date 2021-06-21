@@ -2,61 +2,79 @@
 
 {% block content %}
 
-{% if user_profile.profile_image %}
-<img id="user_profile_image" src="{{ user_profile.profile_image }}" class="responsive-img profile_image" alt="Profile Image" />
-<!-- adding if statement only if signed in as user -->
-{% if session['username'] == username %}
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Change Image
-</button>
-{% endif%}
-<!-- end if  -->
+{% if user_profile.cover_image %}
+
+<div class="hero-profile" style="background-image: url('{{ user_profile.cover_image }}')">
+    <h2 class="top-head">{{ user_profile.username}} ( {{user_profile.personal_pronouns}} )</h2>
+
+</div>
+
 {% else %}
-<img src="{{ url_for('static', filename='img/logo_32.png') }}" class="responsive-img profile_image"
-    alt="Profile Image" />
-<!-- adding if statement only if signed in as user -->
-{% if session['username'] == username %}
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Add Image
-</button>
+
+<div class="hero-profile" style="background-image: url('/static/img/people.png')">
+    <h2 class="top-head">{{ user_profile.username}} ( {{user_profile.personal_pronouns}} )</h2>
+
+</div>
+
 {% endif %}
-<!-- endif -->
-{% endif %}
+<div class="profile-container container">
 
-<p class="bio">Username: {{ user_profile.username}} ( {{user_profile.personal_pronouns}} )</p>
-<p><span class="profile-items">About Me: </span>{{ user_profile.about_me}}</p>
-<p><span class="profile-items">Occupation: </span>{{ user_profile.occupation}}</p>
-<p><span class="profile-items">Tech Stack: </span>{{ user_profile.tech_stack}}</p>
+    <div class="row">
+        <div class="post-title col-12 col-md-2 ">
+            {% if user_profile.profile_image %}
+            <img id="user_profile_image" src="{{ user_profile.profile_image }}" class=" profile_image"
+                alt="Profile Image" />
+            {% else %}
+            <img src="{{ url_for('static', filename='img/logo_32.png') }}" class="responsive-img profile_image"
+                alt="Profile Image" />
+
+            {% endif %}
+        </div>
 
 
-{% if user_profile.posts %}
-<p><span class="profile-items">My Posts </span>
-    <ul>
-        {% for post in my_posts %}
-        <li><a href="{{url_for('post', post_id=post._id)}}">{{post.post_title}}</a></li>
+        <div class="col-md-7 content-container">
+            <h3 class="bio">Username: {{ user_profile.username}} ( {{user_profile.personal_pronouns}} )</h3>
+            <p><span class="profile-items">Occupation: </span>{{ user_profile.occupation}}</p>
+            <p><span class="profile-items">Tech Stack: </span>{{ user_profile.tech_stack}}</p>
 
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p><span class="profile-items">My Posts: None added </span></p>
-    {% endif %}
-    {% if user_profile.commented_on %}
-    <ul>
-        {% for comment in user_profile.commented_on %}
-        <li>{{post.comment.comment_title}}</li>
+        </div>
+    </div>
+    <div class="row">
+        <div class="content-container col-12 col-md-2 ">
+            <h3><span class="profile-items">About Me</h3>
+            <p>{{ user_profile.about_me}}</p>
 
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p><span class="profile-items">Posts I've commented on: None added </span></p>
-    {% endif %}
+            {% if session['username'] == username %}
+            <button type="button" class="btn profile-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Change Image
+            </button>
+            <a class="btn profile-btn" href="{{ url_for('edit_profile', username=session['username']) }}">Edit
+                Profile</a>
+            <a class="btn profile-btn" href="{{ url_for('upload_post') }}">Add a Post</a>
+            {%endif %}
+        </div>
+        <div class="col-md-10  post-title ">
+            {% if user_profile.posts %}
+            <h3 class="profile-items ">  My Posts</h3>
+            <ul>
+                {% for post in my_posts %}
+                <li><a href="{{url_for('post', post_id=post._id)}}" class="large-post">{{post.post_title}}</a></li>
 
-    {% if user_profile.username == session.username %}
+                {% endfor %}
+            </ul>
+            {% else %}
+            <h3 class="profile-items">My Posts </h3>
+                <p>No posts added yet</p>
+                {% endif%}
+        </div>
+    </div>
 
-    <a class="btn btn-danger" href="{{url_for('logout')}}">Log out</a>
-    <a class="btn btn-danger" href="{{ url_for('edit_profile', username=session['username']) }}">Edit Profile</a>
-    {% endif %}
 
-    {% include "includes/upload_image.html" %}
 
-    {% endblock %}
+</div>
+</div>
+
+{% include "includes/upload_image.html" %}
+
+
+{% endblock %}

@@ -67,7 +67,7 @@ class AddGeneralForm(FlaskForm):
                                  min=3, max=40)])
     post_input = TextAreaField('Add Post',
                              validators=[DataRequired(), Length(
-                                 min=3, max=3000)])  
+                                 min=3, max=3000)]) 
     github = StringField('Repo URl')
     deployed = StringField('Deployed Site')
     
@@ -85,7 +85,8 @@ class UpdateProfileForm(FlaskForm):
                                          Length(min=6, max=35)])
     tech_stack = StringField('Tech Stack', validators=[DataRequired(),
                                                        Length(min=6, max=35)])
-    about_me = TextAreaField('About Me', validators=[Length(min=6, max=1000)])
+    about_me = TextAreaField('About Me', validators=[DataRequired(),
+                                                       Length(min=6, max=1000)])
     submit = SubmitField('Update')
 
 

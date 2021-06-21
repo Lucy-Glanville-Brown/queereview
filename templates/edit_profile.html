@@ -1,54 +1,51 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="hero-edit-profile">
+    <h2 class="top-head">Edit Profile</h2>
+</div>
+<div class="row align-items-center d-flex justify-content-center">
+    <div class="col-lg-6 my-3 my-lg-0">
+        <form class="input-form" method="POST" action="">
+            {{ form.hidden_tag() }}
+            <!-- Personal Pronous -->
+            <div class="input-group ">
+                <span class="input-group-text register-icon"></span>
+                {{ form.personal_pronouns(placeholder=user_profile.personal_pronouns, value=user_profile.personal_pronouns, class="form-control") }}
+                {% for error in form.personal_pronouns.errors %}
+                <small class="text-red">{{ error }}</small>
+                {% endfor %}
+            </div>
+            <!-- Occupation -->
+            <div class="input-group ">
+                <span class="input-group-text register-icon"></span>
+                {{ form.occupation(placeholder=user_profile.occupation, value=user_profile.occupation, class="form-control") }}
+                {% for error in form.occupation.errors %}
+                <small class="text-red">{{ error }}</small>
+                {% endfor %}
+            </div>
+            <!-- Tech Stack -->
+            <div class="input-group ">
+                <span class="input-group-text register-icon"></span>
+                {{ form.tech_stack(placeholder=user_profile.tech_stack, value=user_profile.tech_stack, class="form-control") }}
+                {% for error in form.occupation.errors %}
+                <small class="text-red">{{ error }}</small>
+                {% endfor %}
+            </div>
+            <!-- About me -->
+            <div class="input-group ">
+                <span class="input-group-text register-icon"></span>
+                <textarea name="about_me" cols="30" rows="10" class="form-control">{{user_profile.about_me}}</textarea>
+                {% for error in form.about_me.errors %}
+                <small class="text-red">{{ error }}</small>
+                {% endfor %}
+            </div>
 
-<form class="input-form" method="POST" action="">
-    {{ form.hidden_tag() }}
-    <!-- Personal Pronous -->
-    <div class="input-group ">
-        <span class="input-group-text register-icon"></span>
-        {{ form.personal_pronouns(placeholder=user_profile.personal_pronouns, value=user_profile.personal_pronouns, class="form-control") }}
-        {% for error in form.personal_pronouns.errors %}
-        <small class="text-red">{{ error }}</small>
-        {% endfor %}
-    </div>
-    <!-- email -->
-    <div class="input-group ">
-        <span class="input-group-text register-icon"></span>
-        {{ form.email(placeholder=user_profile.email, value=user_profile.email, class="form-control") }}
-        {% for error in form.email.errors %}
-        <small class="text-red">{{ error }}</small>
-        {% endfor %}
-    </div>
-    <!-- Occupation -->
-    <div class="input-group ">
-        <span class="input-group-text register-icon"></span>
-        {{ form.occupation(placeholder=user_profile.occupation, value=user_profile.occupation, class="form-control") }}
-        {% for error in form.occupation.errors %}
-        <small class="text-red">{{ error }}</small>
-        {% endfor %}
-    </div>
-    <!-- Tech Stack -->
-    <div class="input-group ">
-        <span class="input-group-text register-icon"></span>
-        {{ form.tech_stack(placeholder=user_profile.tech_stack, value=user_profile.tech_stack, class="form-control") }}
-        {% for error in form.occupation.errors %}
-        <small class="text-red">{{ error }}</small>
-        {% endfor %}
-    </div>
-    <!-- About me -->
-    <div class="input-group ">
-        <span class="input-group-text register-icon"></span>
-        {{ form.about_me(placeholder=user_profile.about_me, value=user_profile.about_me, class="form-control") }}
-        {% for error in form.about_me.errors %}
-        <small class="text-red">{{ error }}</small>
-        {% endfor %}
-    </div>
+            <!-- Submit -->
+            {{ form.submit(class="col-12 mt-4 btn register-btn") }}
 
-    <!-- Submit -->
-    {{ form.submit(class="col-12 mt-4 btn register-btn") }}
-
-</form>         
-
+        </form>
+    </div>
+</div>
 
 {% endblock %}
