@@ -366,8 +366,9 @@ a:hover {
 }
 
 .profile-container {
-    padding: 20px;
-    background-color: rgba(65, 25, 65, 0.15);
+    padding: 0;
+    padding-top: 40px;
+
 }
 
 .posts {
@@ -391,6 +392,7 @@ a:hover {
 
 .profile-btn {
     width: 100%;
+    margin: 5px;
 }
 
 button:hover {
@@ -412,5 +414,6 @@ h4 {
     align-items: center;
     align-content: space-between;
     flex-direction: column;
-    background-color: rgba(131, 53, 131, 0.15);
+    background-color: rgba(131, 53, 131, 0.01);
+    padding: 0;
 }

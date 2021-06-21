@@ -20,7 +20,7 @@
 <div class="profile-container container">
 
     <div class="row">
-        <div class="content-container col col-md-2 offset-1">
+        <div class="post-title col-12 col-md-2 ">
             {% if user_profile.profile_image %}
             <img id="user_profile_image" src="{{ user_profile.profile_image }}" class=" profile_image"
                 alt="Profile Image" />
@@ -40,7 +40,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="content-container col col-md-2 offset-1">
+        <div class="content-container col-12 col-md-2 ">
             <h3><span class="profile-items">About Me</h3>
             <p>{{ user_profile.about_me}}</p>
 
@@ -53,7 +53,7 @@
             <a class="btn profile-btn" href="{{ url_for('upload_post') }}">Add a Post</a>
             {%endif %}
         </div>
-        <div class="col-md-8  post-title content-container">
+        <div class="col-md-10  post-title ">
             {% if user_profile.posts %}
             <h3 class="profile-items ">My Posts </h3>
             <ul>
