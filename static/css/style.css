@@ -135,6 +135,19 @@ main {
     margin-bottom: 40px;
 }
 
+.hero-edit-post {
+    background-image: url('/static/img/edit-post.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 40vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
 h1,
 h2,
 h3,
