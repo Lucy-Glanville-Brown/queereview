@@ -4,29 +4,53 @@
 
 <div class="hero-posts">
     <h2 class="top-head">Welcome to the Post Stream</h2>
-    <h3 class="top-sub">The place for hearing about the latest info, taking part in code reviews and helping others with their code snippets</h3>
+    <h3 class="top-sub">The place for reading about the latest info, taking part in code reviews and helping others with their code snippets</h3>
 
 </div>
 
 <a class="btn btn-danger" href="{{ url_for('upload_post') }}">Add a Post</a>
 {% for post in posts | reverse %}
-<div style="border: red solid 1px">
-    <a href="{{url_for('post', post_id=post._id)}}">Full post</a>
+
+{% if post.post_type == 'general' %}
+<div style="background-color: red">
+    <a href="{{url_for('post', post_id=post._id)}}" class="btn">Full post</a>
+    <p>Post Title:{{post.post_title}}</p>
+    <p>{{post.post_type}}</p>
+    <p>{{post.post_input}}</p>
+    <p>Post Author: {{post.author}}</p>
+    <p>{{post.date}}</p>      
+    
+</div>
+{% endif %}
+{% if post.github %}
+<div style="background-color: orange">
+    <a href="{{url_for('post', post_id=post._id)}}" class="btn">Full post</a>
     <p>Post Title:{{post.post_title}}</p>
     <p>Post Type: {{post.post_type}}</p>
     <p>{{post.post_input}}</p>
     <p>Post Author: {{post.author}}</p>
     <p>{{post.date}}</p>
-    {% if post.code_pen %}
-        <a href={{post.code_pen}} target="_blank">My Code Pen</a>
-    {% endif %}
-    {% if post.github %}
-        <a href={{post.github}} target="_blank">GitHub Link</a>
-    {% endif %}    
-    {% if post.deployed %}
-        <a href={{post.deployed}} target="_blank">Deployed Link</a>
-    {% endif %}      
+    
+        <a href={{post.github}} target="_blank" class="btn">GitHub Link</a>
+
+        <a href={{post.deployed}} target="_blank" class="btn">Deployed Link</a>
+     
     
 </div>
+{% endif %} 
+{% if post.code_pen %}
+<div style="background-color: blueviolet">
+    <a href="{{url_for('post', post_id=post._id)}}" class="btn">Full post</a>
+    <p>Post Title:{{post.post_title}}</p>
+    <p>Post Type: {{post.post_type}}</p>
+    <p>{{post.post_input}}</p>
+    <p>Post Author: {{post.author}}</p>
+    <p>{{post.date}}</p>
+        <a href={{post.code_pen}} target="_blank" class="btn">My Code Pen</a>
+
+          
+    
+</div>
+{% endif %}
 {% endfor %}
 {% endblock %}
