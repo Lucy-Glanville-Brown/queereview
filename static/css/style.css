@@ -148,6 +148,32 @@ main {
     margin-bottom: 40px;
 }
 
+.hero-register {
+    background-image: url('/static/img/register.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.hero-ally {
+    background-image: url('/static/img/ally.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
 h1,
 h2,
 h3,

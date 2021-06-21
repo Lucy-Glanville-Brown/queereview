@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<div class="hero-register">
+    <h2 class="top-head">Join the Community</h2>
+</div>
 <div class="row align-items-center d-flex justify-content-center">
     <div class="col-lg-6 my-3 my-lg-0">
     <form class="input-form" method="POST" action="">
@@ -73,7 +75,7 @@
 
          <!-- Submit -->
          <div class="col-12 mt-4">
-         {{ form.submit(class=" btn register-btn btn-primary text-uppercase") }}
+         {{ form.submit(class="col-12 mt-4 btn register-btn") }}
         </div>
     </form>
 </div>
