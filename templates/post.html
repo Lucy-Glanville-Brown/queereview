@@ -20,25 +20,29 @@
     {% endif %}
 
     {% if session_user == post.user_id %}
-    <a href="{{ url_for('edit_post', post_id=post._id)}}">Edit Post</a>
-    <a href="{{ url_for('delete_post', post_id=post._id)}}">Delete Post</a>
+    <a href="{{ url_for('edit_post', post_id=post._id)}}" class="btn ">Edit Post</a>
+    <a href="{{ url_for('delete_post', post_id=post._id)}}" class="btn ">Delete Post</a>
     {% endif %}
 </div>
+<div class="row align-items-center d-flex justify-content-center">
+    <div class="col-lg-6 my-3 my-lg-0">
+        <form class="input-form" method="POST" action="">
+            {{ form.hidden_tag() }}
+            <!-- Username -->
+            <div class="input-group ">
+                <span class="input-group-text register-icon"></span>
+                {{ form.comment_input(placeholder="Add Comment", class="form-control") }}
+                {% for error in form.comment_input.errors %}
+                <small class="text-red">{{ error }}</small>
+                {% endfor %}
+            </div>
 
-<form class="input-form" method="POST" action="">
-    {{ form.hidden_tag() }}
-    <!-- Username -->
-    <div class="input-group ">
-        <span class="input-group-text register-icon"></span>
-        {{ form.comment_input(placeholder="Add Comment", class="form-control") }}
-        {% for error in form.comment_input.errors %}
-        <small class="text-red">{{ error }}</small>
-        {% endfor %}
+            {{ form.submit(class="col-12 mt-4 btn register-btn") }}
+
+        </form>
     </div>
+</div>
 
-    {{ form.submit(class="col-12 mt-4 btn register-btn") }}
-
-</form>
 <div class="continer">
     <h5>Comments</h5>
 <div class="row">
