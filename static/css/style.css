@@ -35,9 +35,13 @@ html {
 .hero {
     background-image: url('/static/img/parade.jpg');
     background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
-    height: 60vh
-}
+    height:80vh;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
 
 .hero-users {
     background-image: url('/static/img/pride.png');
@@ -99,13 +103,16 @@ h1, h2, h3 {
     font-size: 2.25rem;
     font-style: italic;
     line-height: 2.25rem;
-    margin-bottom: 2rem;
-}
+
+    margin-top: 1.5rem;
+    margin-bottom: 2rem; 
+
 
 .welcome_text {
     font-size: 4.5rem;
     font-weight: 700;
     line-height: 4.5rem;
+    margin-top: 2rem;
     margin-bottom: 4rem;
     color: #3a8cdf;
 }
@@ -115,9 +122,10 @@ h1, h2, h3 {
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #198754;
+    color:#ffc800;
+    background-color:rgba(131,53,131.9);
     border-color: #ffc800;
+    padding:1.5rem;
 }
 
 #general_form {
@@ -131,6 +139,13 @@ h1, h2, h3 {
 #review_form {
     display: none;
 }
+
+/*---------------------------footer*/
+.btn-dark{
+    background-color:rgba(131,53,131.9);
+    color:#ffc800;
+}
+
 
 li {
     list-style: none;
