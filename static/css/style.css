@@ -122,6 +122,19 @@ main {
     margin-bottom: 40px;
 }
 
+.hero-edit-profile {
+    background-image: url('/static/img/edit-profile.jpg');
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 40vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
 h1,
 h2,
 h3,
@@ -205,7 +218,7 @@ h3 {
     display: none;
 }
 
-/*--------------------------- form icons*/
+/*--------------------------- forms*/
 
 .fas {
     color: white;
@@ -217,6 +230,7 @@ h3 {
 
 .register-icon {
     border: rgba(131, 53, 131.9) solid 1px;
+    color: white;
     background-color: rgba(131, 53, 131.9)
 }
 
