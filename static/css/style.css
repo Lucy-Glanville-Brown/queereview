@@ -41,7 +41,7 @@ html {
     display:flex;
     flex-direction: column;
     align-items: center;
-
+}
 
 .hero-users {
     background-image: url('/static/img/pride.png');
