@@ -110,6 +110,19 @@ main {
     align-items: center;
 }
 
+.hero-login {
+    background-image: url('/static/img/login.jpg');
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:40vh;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
 h1, h2, h3, h4, h5, h5 {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -180,6 +193,31 @@ h1, h2, h3 {
 
 #review_form {
     display: none;
+}
+
+/*--------------------------- form icons*/
+
+.fas {
+   color: white;
+}
+
+.form-control {
+    border: rgba(131,53,131.9) solid 1px
+}
+
+.register-icon {
+    border: rgba(131,53,131.9) solid 1px;
+    background-color: rgba(131,53,131.9)
+}
+
+.register-btn {
+    border: rgba(131,53,131.9) solid 1px;
+    color: rgba(131,53,131.9);
+}
+
+.register-btn:hover {
+    background-color: rgba(131,53,131.9);
+    color: white;
 }
 
 /*---------------------------footer*/
