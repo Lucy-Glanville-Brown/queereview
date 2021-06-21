@@ -51,6 +51,7 @@ main {
     align-items: center;
 }
 
+
 .hero-users {
     background-image: url('/static/img/pride.png');
     background-position: center;
@@ -192,6 +193,11 @@ h3 {
 
 .top-head {
     color: white;
+    font-size: 4rem;
+    letter-spacing: 1.5px;
+}
+
+.top-head-black {
     font-size: 4rem;
     letter-spacing: 1.5px;
 }
@@ -355,7 +361,7 @@ a {
     color: rgb(24, 24, 24);
 }
 
-a:hover {
+a:hover, a:active {
     font-style: italic;
     color: unset;
 }
@@ -394,6 +400,7 @@ a:hover {
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+
 .img-container {}
 
 .content-container {
@@ -402,7 +409,7 @@ a:hover {
     align-items: flex-start;
     align-content: space-between;
     flex-direction: column;
-    padding-right:20px;
+    padding-right: 20px;
 }
 
 .content-container h3 {
@@ -455,6 +462,12 @@ a:hover {
     margin: 5px;
 }
 
+.button-primary:hover {
+    font-style: italic;
+    color: unset;
+    
+}
+
 button:hover {
     font-style: italic;
 }
@@ -494,24 +507,54 @@ form.modal-form {
     margin: unset;
     margin-top: unset;
 
-    -webkit-box-shadow:unset;
+    -webkit-box-shadow: unset;
     -moz-box-shadow: unset;
     box-shadow: unset;
 
 }
-p.sub-heading  {
-    padding-top:20px;
-}
-.sub-heading {
-    font-weight:600 ;
+
+p.sub-heading {
     padding-top: 20px;
 }
 
+.sub-heading {
+    font-weight: 600;
+    padding-top: 20px;
+}
+
+.navbar-light .navbar-toggler {
+    color: rgba(0, 0, 0, 1);
+}
+
+.code_div {
+    background-color: rgba(230, 239, 171, 0.98)
+}
+
+.review_div {
+    background-color: rgba(255, 207, 239, 0.98);
+}
+
+.general_div {
+    background-color: rgba(171, 207, 239, 0.98)
+}
+
+.home-post {
+    
+    padding: 5px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.ally {
+    margin-top:30px;
+}
 @media only screen and (max-width: 600px) {
-  .top-head {
-    font-size: 1.8rem;
-  }
-  .sub-head-white {
-      font-size:1.4rem;
-  }
+    .top-head {
+        font-size: 1.8rem;
+    }
+
+    .sub-head-white {
+        font-size: 1.4rem;
+    }
 }
