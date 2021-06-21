@@ -25,7 +25,7 @@
     {% endif %}
 </div>
 <div class="row align-items-center d-flex justify-content-center">
-    <div class="col-lg-6 my-3 my-lg-0">
+    <div class="col-lg-10 my-3 my-lg-0">
         <form class="input-form" method="POST" action="">
             {{ form.hidden_tag() }}
             <!-- Username -->
@@ -44,27 +44,30 @@
 </div>
 
 <div class="continer">
-    <h5>Comments</h5>
+    <h3>Comments</h3>
 <div class="row">
 {% for comment in post.comments %}
 {% if comment.comment_user_id == session_user %}
-<div class="col-12 post_card">
+<div class="col-lg-10 my-3 my-lg-0 post_card">
     <div class="post_item">
-    <p><a href={{url_for('profile', username=post.username)}}>Author: {{comment.author}}</a></p>
-    <p>Comment: {{comment.comment_input}}</p>
-    <form method="POST" action="{{ url_for('delete_comment', post=post._id, comment_id=comment.comment_id)}}" id="
+    <p class="sub-heading large-post">{{comment.comment_input}}</p>
+    <p><a href={{url_for('profile', username=post.username)}}>{{comment.author}}</a></p>
+    <p>{{comment.date}}</p>
+    <form method="POST" class="modal-form" action="{{ url_for('delete_comment', post=post._id, comment_id=comment.comment_id)}}" 
         delete-comment-form">
-        <button type="submit" class=" btn btn-yellow btn-red">Delete Comment</button>
+        <button type="submit" class="btn">Delete Comment</button>
     </form>
     </div>
 </div>
 
 
 {% else %}
-<div style="border: red solid 1px">
-    <p>Author{{comment.author}}</p>
-    <p>Comment: {{comment.comment_input}}</p>
-</div>
+<div class="col-lg-10 my-3 my-lg-0 post_card">
+    <div class="post_item">
+    <p class="sub-heading large-post">{{comment.comment_input}}</p>
+    <p><a href={{url_for('profile', username=post.username)}}>{{comment.author}}</a></p>
+    <p>{{comment.date}}</p>
+    </div>
 {% endif %}
 
 {% endfor %}

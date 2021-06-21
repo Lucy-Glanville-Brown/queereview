@@ -462,9 +462,9 @@ form.modal-form {
     margin: unset;
     margin-top: unset;
 
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.05) inset;
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.05) inset;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.05) inset;
+    -webkit-box-shadow:unset;
+    -moz-box-shadow: unset;
+    box-shadow: unset;
 
 }
 p.sub-heading  {
