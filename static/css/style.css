@@ -298,6 +298,7 @@ form {
 
 li {
     list-style: none;
+    margin-top: 20px;
 }
 
 .post_card {
@@ -382,6 +383,7 @@ a:hover {
     align-items: flex-start;
     align-content: space-between;
     flex-direction: column;
+    padding-right:20px;
 }
 
 .content-container h3 {
@@ -457,3 +459,40 @@ h4 {
     padding: 0;
 }
 
+.large-post {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+ul {
+    padding: 0;
+}
+
+form.modal-form {
+    background-color: unset;
+    padding: unset;
+    border-radius: unset;
+    margin: unset;
+    margin-top: unset;
+
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.05) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.05) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.05) inset;
+
+}
+p.sub-heading  {
+    padding-top:20px;
+}
+.sub-heading {
+    font-weight:600 ;
+    padding-top: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .top-head {
+    font-size: 1.8rem;
+  }
+  .sub-head-white {
+      font-size:1.4rem;
+  }
+}

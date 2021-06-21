@@ -25,8 +25,8 @@
                             class=" profile_image" alt="Profile Image" />
                     </a>
                     {% endif %}
-                    <p><a
-                            href="{{ url_for('profile', username=user.username ) }}">{{user.username}}({{user.personal_pronouns}})</a>
+                    <p class="sub-heading"><a
+                            href="{{ url_for('profile', username=user.username ) }}" class="sub-heading">{{user.username}}({{user.personal_pronouns}})</a>
                     </p>
                     <p>{{user.tech_stack}}</p>
                     <p>{{user.occupation}}</p>
