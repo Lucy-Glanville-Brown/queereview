@@ -1,18 +1,25 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="Add Image" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Image</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Images</h5>
   
       </div>
       <div class="modal-body">
+          <h3>Upload Profile Image</h3>
           <form action="{{ url_for('upload_image', username=username) }}" method="POST" enctype="multipart/form-data">
             <div class="modal-body mb-3">
                     <input type="file" name="user_image" class="form-control" />
             </div>
+            <button type="submit" class="btn btn-upload">Upload</button>
+          </form>
+            <h3>Upload Cover Image</h3>
+            <form action="{{ url_for('upload_cover', username=username) }}" method="POST" enctype="multipart/form-data">
+            <div class="modal-body mb-3">
+                    <input type="file" name="cover_image" class="form-control" />
+            </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-upload">Upload</button>
             </div>
         </form>

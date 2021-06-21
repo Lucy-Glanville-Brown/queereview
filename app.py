@@ -54,13 +54,15 @@ def profile(username):
         user_id = mongo.db.users.find_one(
             {'username': session['username']})['_id']
         my_posts = mongo.db.posts.find({'user_id': user_id})
+        my_comments = mongo.db.posts.find({'comments.comment_user_id' : ObjectId(user_id)})
+       
 
         return render_template(
             'profile.html',
             username=username,
             user_profile=user_profile,
             user_session=user_session,
-            my_posts=my_posts
+            my_posts=my_posts, my_comments=my_comments
         )
 
     else:
@@ -91,7 +93,7 @@ def edit_profile(username):
                          }})
 
         flash('Your details have been successfully update.')
-        return redirect(url_for('profile'))
+        return redirect(url_for('profile', username=username))
 
     return render_template('edit_profile.html', username=session['username'], user_profile=user_profile, form=form)
 
@@ -113,9 +115,9 @@ def edit_post(post_id):
         post_update = update_post()
 
         mongo.db.posts.update_one({"_id": ObjectId(post_id)},
-                         {'$set': 
-                             post_update
-                         })
+                                  {'$set':
+                                   post_update
+                                   })
 
         flash('Your post has been successfully update.')
         return redirect(url_for('post', post_id=post_id))
@@ -137,7 +139,7 @@ def users():
     return render_template('users.html', users=users)
 
 
-@app.route('/ally')
+@app.route('/allyandsupport')
 def ally():
     return render_template('ally.html')
 
@@ -227,8 +229,11 @@ def post(post_id):
                     'comment_id': comment_id,
                     'date': comment_date,
                     'author': session_user['username'] + " " + session_user['personal_pronouns'],
-                    'user_id': session_user['_id'],
+                    'comment_user_id': session_user['_id'],
+                    'username': session_user['username'],
+                    'post_id': ObjectId(post_id),
                     'comment_input': comment_input,
+                    'post_title_comment': post['post_title']
                 }}})
 
             return render_template(
@@ -265,7 +270,31 @@ def upload_image(username):
         return redirect(url_for('profile', username=session['username']))
     return render_template("profile.html", username=session['username'])
 
+
+@app.route("/<username>/upload_cover", methods=["GET", "POST"])
+def upload_cover(username):
+
+    if request.method == 'POST':
+        for item in request.files.getlist("cover_image"):
+            filename = secure_filename(item.filename)
+            filename, file_extension = os.path.splitext(filename)
+            public_id_image = (username + '/q_auto:low/' + filename)
+            cloudinary.uploader.unsigned_upload(
+                item, "puppy_image", cloud_name='puppyplaymates',
+                folder='/doubleshamrocks/', public_id=public_id_image)
+            image_url = (
+                "https://res.cloudinary.com/puppyplaymates/image/upload/doubleshamrocks/"
+                + public_id_image + file_extension)
+
+            mongo.db.users.update(
+                {"username": session['username']},
+                {"$set": {"cover_image": image_url}})
+
+        return redirect(url_for('profile', username=session['username']))
+    return render_template("profile.html", username=session['username'])
 # Register
+
+
 @ app.route("/register", methods=['GET', 'POST'])
 def register():
     '''
@@ -324,11 +353,11 @@ def delete_comment(post, comment_id):
         {'$pull': {'comments': {'comment_id': ObjectId(comment_id)}}})
     flash("Your profile has been succesfully deleted")
     return redirect(url_for('post', post_id=post))
-   
+
 
 @ app.route('/delete_post/<post_id>', methods=['GET', 'POST'])
 def delete_post(post_id):
-    
+
     mongo.db.posts.remove({'_id': ObjectId(post_id)})
     flash("Your post has been succesfully deleted")
     return redirect(url_for('profile', username=session['username']))

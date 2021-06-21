@@ -1,35 +1,38 @@
 /* orginal code Start Bootstrap - Agency v7.0.4 (https://startbootstrap.com/theme/agency) */
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap');
 
 
 body,
-html{
+html {
     margin: 0;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    
     height: 100%;
     text-align: center;
     box-sizing: border-box;
 }
+
 /* ---------------------navbar*/
 .fixed-top {
-    margin:0px 5vw;   
+    margin: 0px 5vw;
 }
 
-.container{
-    padding-top:80px;
+
+.container-fluid {
+    padding-top: 80px;
+    padding-left: 0;
+    padding-right: 0;
+    flex: 1 0 auto;
 }
 
-.navbar-light 
-.navbar-brand{
-    color: rgba(131,53,131.9);
+.navbar-light .navbar-brand {
+    color: rgba(131, 53, 131.9);
     font-weight: 500;
 }
 
 /*---------------------hero image at home page*/
-.hero{
+.hero {
     background-image: url('/static/img/parade.jpg');
     background-position: center;
     background-size: cover;
@@ -38,17 +41,74 @@ html{
     display:flex;
     flex-direction: column;
     align-items: center;
+
+
+.hero-users {
+    background-image: url('/static/img/pride.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 70vh;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.hero_text{
+.hero-posts {
+    background-image: url('/static/img/posts.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 70vh;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.hero-profile {
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+h1, h2, h3, h4, h5, h5 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+h1, h2, h3 {
+    font-weight: 900;
+}
+
+.top-head {
+    color: white;
+    font-size: 4rem;
+    letter-spacing: 1.5px;
+}
+
+.top-sub {
+    color:#f919b4;
+    letter-spacing: 0.5px;
+    font-size: 2rem;
+}
+
+.hero_text {
     font-size: 2.25rem;
     font-style: italic;
     line-height: 2.25rem;
+
     margin-top: 1.5rem;
     margin-bottom: 2rem; 
-}
 
-.welcome_text{
+
+.welcome_text {
     font-size: 4.5rem;
     font-weight: 700;
     line-height: 4.5rem;
@@ -57,8 +117,8 @@ html{
     color: #3a8cdf;
 }
 
-.btn{
-    margin:.75rem .375rem;
+.btn {
+    margin: .75rem .375rem;
 }
 
 .btn-primary {
@@ -79,9 +139,121 @@ html{
 #review_form {
     display: none;
 }
+
 /*---------------------------footer*/
 .btn-dark{
     background-color:rgba(131,53,131.9);
     color:#ffc800;
 }
-/*---------------------------register page*/
+
+
+li {
+    list-style: none;
+}
+
+.post_card {
+    display: flex;
+    width: 100%;
+}
+
+.post_item {
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: rgb(26 188 95 / 5%);
+    padding: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 1%;
+}
+
+div {
+    margin-top: 8px;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(24, 24, 24);
+}
+
+a:hover {
+    font-style: italic;
+    color: unset;
+}
+
+.ally div {
+    padding: 40px;
+}
+
+.ally div h3, .ally div h2 {
+    padding: 40px;
+}
+
+.ally-0 {
+    background-color: rgb(255, 251, 246);
+}
+
+.ally-1 {
+    background-image: url('/static/img/lgbt.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+.ally-2{
+    background-image: url('/static/img/lgbt.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.img-container {}
+
+.content-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: space-between;
+    flex-direction: column;
+}
+
+.content-container h3 {
+    padding-top: 25px;
+    font-size: 2rem;
+    font-weight: 500;
+    padding-left: 20px;
+}
+
+.content-container p {
+    display: block;
+    padding-left: 20px;
+}
+
+.stream {
+    margin-top: 20px;
+}
+
+.profile_image {
+    width: 230px;
+    height: 230px;
+}
+
+.profile-container {
+    padding: 20px;
+}
