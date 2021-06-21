@@ -374,7 +374,7 @@ a:hover {
 }
 
 .ally-1 {
-    background-image: url('/static/img/lgbt.jpg');
+    background-image: url('/static/img/pastle.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -382,12 +382,18 @@ a:hover {
 }
 
 .ally-2 {
-    background-image: url('/static/img/lgbt.jpg');
+    background-image: url('/static/img/people3.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
+.ally-3 {
+    background-image: url('/static/img/lgbt.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
 .img-container {}
 
 .content-container {
