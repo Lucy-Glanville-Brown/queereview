@@ -12,11 +12,13 @@ html {
     text-align: center;
     box-sizing: border-box;
     overflow-x: hidden;
+
 }
 
 main {
     padding-bottom: 150px;
     
+
 }
 
 /* ---------------------navbar*/
@@ -72,6 +74,7 @@ main {
     align-items: center;
     flex-direction: column;
     margin-bottom: 40px;
+
 }
 
 .hero-upload {
