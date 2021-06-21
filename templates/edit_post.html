@@ -20,7 +20,8 @@
          </div>
          <div class="input-group ">
              <span class="input-group-text register-icon"></span>
-             {{ formGeneral.post_input(placeholder=post.post_input, value=post.post_input, class="form-control", id="gen") }}
+             <textarea name="post_input" id="id" cols="30" rows="10" class="form-control">{{post.post_input}}</textarea>
+        
              {% for error in formGeneral.post_input.errors %}
              <small class="text-red">{{ error }}</small>
              {% endfor %}
@@ -44,7 +45,7 @@
          </div>
          <div class="input-group ">
              <span class="input-group-text register-icon"></span>
-             {{ formReview.post_input(placeholder=post.post_input, value=post.post_input, class="form-control") }}
+             <textarea name="post_input" id="id" cols="30" rows="10" class="form-control">{{post.post_input}}</textarea>
              {% for error in formReview.post_input.errors %}
              <small class="text-red">{{ error }}</small>
              {% endfor %}
@@ -85,7 +86,7 @@
          </div>
          <div class="input-group ">
              <span class="input-group-text register-icon"></span>
-             {{ formCode.post_input(placeholder=post.post_input, value=post.post_input, class="form-control") }}
+             <textarea name="post_input" id="id" cols="30" rows="10" class="form-control">{{post.post_input}}</textarea>
              {% for error in formCode.post_input.errors %}
              <small class="text-red">{{ error }}</small>
              {% endfor %}

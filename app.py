@@ -54,8 +54,8 @@ def profile(username):
         user_id = mongo.db.users.find_one(
             {'username': session['username']})['_id']
         my_posts = mongo.db.posts.find({'user_id': user_id})
-        my_comments = mongo.db.posts.find({'comments.comment_user_id' : ObjectId(user_id)})
-       
+        my_comments = mongo.db.posts.find(
+            {'comments.comment_user_id': ObjectId(user_id)})
 
         return render_template(
             'profile.html',
@@ -79,9 +79,10 @@ def edit_profile(username):
     """
 
     user_profile = mongo.db.users.find_one({"username": session['username']})
-
     form = UpdateProfileForm()
+
     if form.validate_on_submit():
+        print('valid')
         users = mongo.db.users
         users.update_one({"username": username},
                          {'$set': {

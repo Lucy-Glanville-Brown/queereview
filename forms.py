@@ -24,7 +24,7 @@ class RegisterForm(FlaskForm):
                                          Length(min=6, max=35)])
     tech_stack = StringField('Tech Stack', validators=[DataRequired(),
                                                        Length(min=6, max=150)])
-    about_me = StringField('About Me', validators=[Length(min=6, max=1000)])
+    about_me = TextAreaField('About Me', validators=[Length(min=6, max=1000)])
     submit = SubmitField('Register')
 
 
@@ -39,7 +39,7 @@ class AddCodeForm(FlaskForm):
     post_title = StringField('Add Title',
                              validators=[DataRequired(), Length(
                                  min=3, max=40)])
-    post_input = StringField('Add Post',
+    post_input = TextAreaField('Add Post',
                              validators=[DataRequired(), Length(
                                  min=3, max=3000)])
     code_pen = StringField('Code Pen URL')
@@ -51,7 +51,7 @@ class AddReviewForm(FlaskForm):
     post_title = StringField('Add Title',
                              validators=[DataRequired(), Length(
                                  min=3, max=40)])
-    post_input = StringField('Add Post',
+    post_input = TextAreaField('Add Post',
                              validators=[DataRequired(), Length(
                                  min=3, max=3000)])
     code_pen = StringField('Code Pen URL')
@@ -65,9 +65,9 @@ class AddGeneralForm(FlaskForm):
     post_title = StringField('Add Title',
                              validators=[DataRequired(), Length(
                                  min=3, max=40)])
-    post_input = StringField('Add Post',
+    post_input = TextAreaField('Add Post',
                              validators=[DataRequired(), Length(
-                                 min=3, max=3000)])  
+                                 min=3, max=3000)]) 
     github = StringField('Repo URl')
     deployed = StringField('Deployed Site')
     
@@ -85,7 +85,8 @@ class UpdateProfileForm(FlaskForm):
                                          Length(min=6, max=35)])
     tech_stack = StringField('Tech Stack', validators=[DataRequired(),
                                                        Length(min=6, max=35)])
-    about_me = StringField('About Me', validators=[Length(min=6, max=1000)])
+    about_me = TextAreaField('About Me', validators=[DataRequired(),
+                                                       Length(min=6, max=1000)])
     submit = SubmitField('Update')
 
 
