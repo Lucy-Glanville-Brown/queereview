@@ -4,9 +4,9 @@
  {% block content %}
 
  <div class="add-post-div">
+     {{post_type}}
 
     {% if post.post_type == 'general'%}
-    <div id="general_form">
      <form class="input-form" method="POST" action="">
          {{ formGeneral.hidden_tag() }}
          <!-- Post Input -->
@@ -29,10 +29,8 @@
          {{ formGeneral.submit(class="col-12 mt-4 btn register-btn") }}
 
      </form>
-</div>
 {% endif %}
 {% if post.post_type == 'review'%}
-<div id="review">
      <form class="input-form" method="POST" action="">
          {{ formReview.hidden_tag() }}
          <!-- Post Input -->
@@ -69,11 +67,10 @@
          {{ formReview.submit(class="col-12 mt-4 btn register-btn") }}
 
      </form>
-</div>
 {% endif %}
 
 {% if post.post_type == 'code'%}
-<div id="code_form">
+
 
      <form class="input-form" method="POST" action="">
          {{ formCode.hidden_tag() }}
@@ -105,7 +102,7 @@
          {{ formCode.submit(class="col-12 mt-4 btn register-btn")}}
 
      </form>
-</div>
+
 {% endif %}
  </div>
  {% endblock %}
