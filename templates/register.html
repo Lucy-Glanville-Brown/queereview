@@ -2,7 +2,9 @@
 
 {% block content %}
 
-<form class="input-form" method="POST" action="">
+<div class="row align-items-center d-flex justify-content-center">
+    <div class="col-lg-6 my-3 my-lg-0">
+    <form class="input-form" method="POST" action="">
          {{ form.hidden_tag() }}
          <!-- Username -->
          <div class="input-group ">
@@ -70,10 +72,13 @@
          </div>
 
          <!-- Submit -->
+
          {{ form.submit(class="col-12 mt-4 btn register-btn") }}
 
-</form>         
-
+    </form>
+</div>
+       
+</div>
 
 
 {% endblock %}
