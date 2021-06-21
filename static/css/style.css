@@ -50,6 +50,19 @@ html {
     align-items: center;
 }
 
+.hero-posts {
+    background-image: url('/static/img/posts.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 70vh;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+
 .hero-profile {
 
     background-position: center;
@@ -74,6 +87,12 @@ h1, h2, h3 {
     color: white;
     font-size: 4rem;
     letter-spacing: 1.5px;
+}
+
+.top-sub {
+    color:#f919b4;
+    letter-spacing: 0.5px;
+    font-size: 2rem;
 }
 
 .hero_text {
@@ -203,10 +222,12 @@ a:hover {
     padding-top: 25px;
     font-size: 2rem;
     font-weight: 500;
+    padding-left: 20px;
 }
 
 .content-container p {
     display: block;
+    padding-left: 20px;
 }
 
 .stream {
@@ -216,4 +237,8 @@ a:hover {
 .profile_image {
     width: 230px;
     height: 230px;
+}
+
+.profile-container {
+    padding: 20px;
 }

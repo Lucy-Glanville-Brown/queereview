@@ -2,7 +2,7 @@
 
 {% block content %}
 
-{% if user_profile.cover_img %}
+{% if user_profile.cover_image %}
 
 <div class="hero-profile" style="background-image: url('{{ user_profile.cover_image }}')">
     <h2 class="top-head">{{ user_profile.username}} ( {{user_profile.personal_pronouns}} )</h2>
@@ -17,16 +17,31 @@
 </div>
 
 {% endif %}
-
+<div class="profile-container">
     {% if user_profile.profile_image %}
     <div class="row">
-        <div class="content-container col col-md-3">
+        <div class="content-container col col-md-2 offset-1">
             <img id="user_profile_image" src="{{ user_profile.profile_image }}" class=" profile_image"
                 alt="Profile Image" />
                 {% if session['username'] == username %}
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Change Image
     </button>
+    
+
+        <a class="btn btn-danger" href="{{ url_for('edit_profile', username=session['username']) }}">Edit Profile</a>
+        {% if user_profile.posts %}
+    <p><span class="profile-items">My Posts </span>
+        <ul>
+            {% for post in my_posts %}
+            <li><a href="{{url_for('post', post_id=post._id)}}">{{post.post_title}}</a></li>
+
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p><span class="profile-items">My Posts: None added </span></p>
+        {% endif %}
+        
 
     {% endif%}
             <!-- adding if statement only if signed in as user -->
@@ -35,6 +50,7 @@
             <h3 class="bio">Username: {{ user_profile.username}} ( {{user_profile.personal_pronouns}} )</h3>
             <p><span class="profile-items">Occupation: </span>{{ user_profile.occupation}}</p>
             <p><span class="profile-items">Tech Stack: </span>{{ user_profile.tech_stack}}</p>
+            <p><span class="profile-items">About Me: </span>{{ user_profile.about_me}}</p>
         </div>
     </div>
 
@@ -51,22 +67,16 @@
             <h3 class="bio">Username: {{ user_profile.username}} ( {{user_profile.personal_pronouns}} )</h3>
             <p><span class="profile-items">Occupation: </span>{{ user_profile.occupation}}</p>
             <p><span class="profile-items">Tech Stack: </span>{{ user_profile.tech_stack}}</p>
+            <p><span class="profile-items">About Me: </span>{{ user_profile.about_me}}</p>
         </div>
     {% if session['username'] == username %}
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Add Image
     </button>
+    <a class="btn btn-danger" href="{{ url_for('edit_profile', username=session['username']) }}">Edit Profile</a>
    
     </div>
     {% endif %}
-    <!-- endif -->
-    {% endif %}
-
-
-    <p><span class="profile-items">About Me: </span>{{ user_profile.about_me}}</p>
-
-
-
     {% if user_profile.posts %}
     <p><span class="profile-items">My Posts </span>
         <ul>
@@ -78,25 +88,14 @@
         {% else %}
         <p><span class="profile-items">My Posts: None added </span></p>
         {% endif %}
-        <!-- {% if my_comments %}
-    <ul>
-        {% for com in my_comments %}
-        {% for com in comment %}
-        <li>{{com.comments}}</li>
-        <li><a href="{{url_for('post', post_id=comment.post_comment_title)}}">{{com.post_title_comment}}</a></li>
-{%endfor%}
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p><span class="profile-items">Posts I've commented on: None added </span></p>
-    {% endif %} -->
+    <!-- endif -->
+    {% endif %}
 
-        {% if user_profile.username == session.username %}
 
-        <a class="btn btn-danger" href="{{url_for('logout')}}">Log out</a>
-        <a class="btn btn-danger" href="{{ url_for('edit_profile', username=session['username']) }}">Edit Profile</a>
-        {% endif %}
 
+    
+
+</div>
 </div>
 
 {% include "includes/upload_image.html" %}
