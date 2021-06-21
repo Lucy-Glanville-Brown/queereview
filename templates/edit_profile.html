@@ -12,14 +12,6 @@
         <small class="text-red">{{ error }}</small>
         {% endfor %}
     </div>
-    <!-- email -->
-    <div class="input-group ">
-        <span class="input-group-text register-icon"></span>
-        {{ form.email(placeholder=user_profile.email, value=user_profile.email, class="form-control") }}
-        {% for error in form.email.errors %}
-        <small class="text-red">{{ error }}</small>
-        {% endfor %}
-    </div>
     <!-- Occupation -->
     <div class="input-group ">
         <span class="input-group-text register-icon"></span>
@@ -30,7 +22,7 @@
     </div>
     <!-- Tech Stack -->
     <div class="input-group ">
-        <span class="input-group-text register-icon"></span>
+        <span class="input-group-text "></span>
         {{ form.tech_stack(placeholder=user_profile.tech_stack, value=user_profile.tech_stack, class="form-control") }}
         {% for error in form.occupation.errors %}
         <small class="text-red">{{ error }}</small>
@@ -38,8 +30,8 @@
     </div>
     <!-- About me -->
     <div class="input-group ">
-        <span class="input-group-text register-icon"></span>
-        {{ form.about_me(placeholder=user_profile.about_me, value=user_profile.about_me, class="form-control") }}
+        <span class="input-group-text "></span>
+        <textarea name="about_me"  cols="30" rows="10" class="form-control">{{user_profile.about_me}}</textarea>
         {% for error in form.about_me.errors %}
         <small class="text-red">{{ error }}</small>
         {% endfor %}

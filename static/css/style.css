@@ -17,7 +17,7 @@ html {
 
 main {
     padding-bottom: 150px;
-    
+
 
 }
 
@@ -34,8 +34,7 @@ main {
     flex: 1 0 auto;
 }
 
-.navbar-light 
-.navbar-brand{
+.navbar-light .navbar-brand {
     color: rgba(131, 53, 131.9);
     font-weight: 500;
 }
@@ -46,8 +45,8 @@ main {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height:80vh;
-    display:flex;
+    height: 80vh;
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
@@ -58,7 +57,7 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     height: 70vh;
-    display:flex;
+    display: flex;
     justify-content: space-around;
     align-items: center;
 }
@@ -69,7 +68,7 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     height: 70vh;
-    display:flex;
+    display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
@@ -92,7 +91,7 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     height: 50vh;
-    display:flex;
+    display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
@@ -105,7 +104,7 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     height: 50vh;
-    display:flex;
+    display: flex;
     justify-content: space-around;
     align-items: center;
 }
@@ -115,20 +114,27 @@ main {
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
-    height:40vh;
-    display:flex;
+    height: 40vh;
+    display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
     margin-bottom: 40px;
 }
 
-h1, h2, h3, h4, h5, h5 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h5 {
     padding-top: 30px;
     padding-bottom: 30px;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-weight: 900;
 }
 
@@ -139,13 +145,13 @@ h1, h2, h3 {
 }
 
 .top-sub-white {
-    color:white;
+    color: white;
     letter-spacing: 0.7px;
     font-size: 2rem;
 }
 
 .top-sub {
-    color:#f919b4;
+    color: #f919b4;
     letter-spacing: 0.5px;
     font-size: 2rem;
 }
@@ -158,8 +164,8 @@ h1, h2, h3 {
     line-height: 2.25rem;
     margin-top: .25rem;
     margin-bottom: 2rem;
-    
-} 
+
+}
 
 .welcome_text {
     font-size: 4.5rem;
@@ -176,8 +182,8 @@ h1, h2, h3 {
 }
 
 .btn-primary {
-    color:#ffc800;
-    background-color:rgba(131,53,131.9);
+    color: #ffc800;
+    background-color: rgba(131, 53, 131.9);
     border-color: #ffc800;
     padding: .75rem 1rem;
 
@@ -198,25 +204,25 @@ h1, h2, h3 {
 /*--------------------------- form icons*/
 
 .fas {
-   color: white;
+    color: white;
 }
 
 .form-control {
-    border: rgba(131,53,131.9) solid 1px
+    border: rgba(131, 53, 131.9) solid 1px
 }
 
 .register-icon {
-    border: rgba(131,53,131.9) solid 1px;
-    background-color: rgba(131,53,131.9)
+    border: rgba(131, 53, 131.9) solid 1px;
+    background-color: rgba(131, 53, 131.9)
 }
 
 .register-btn {
-    border: rgba(131,53,131.9) solid 1px;
-    color: rgba(131,53,131.9);
+    border: rgba(131, 53, 131.9) solid 1px;
+    color: rgba(131, 53, 131.9);
 }
 
 .register-btn:hover {
-    background-color: rgba(131,53,131.9);
+    background-color: rgba(131, 53, 131.9);
     color: white;
 }
 
@@ -224,14 +230,27 @@ h1, h2, h3 {
 
 footer {
     -webkit-box-shadow: 0px -1px 2px 0px rgba(65, 25, 65, 0.15);
--moz-box-shadow: 0px -1px 2px 0px rgba(131,53,131,0.15);
-box-shadow: 0px -1px 2px 0px rgba(65, 25, 65,0.15);
-}
-.btn-dark{
-    background-color:rgba(131,53,131.9);
-    color:#ffc800;
+    -moz-box-shadow: 0px -1px 2px 0px rgba(131, 53, 131, 0.15);
+    box-shadow: 0px -1px 2px 0px rgba(65, 25, 65, 0.15);
 }
 
+.btn-dark {
+    background-color: rgba(131, 53, 131.9);
+    color: #ffc800;
+}
+
+form {
+    background-color: rgba(255,255, 229, 0.1);
+    padding: 50px;
+    border-radius: 1%;
+    margin: 20px;
+    margin-top: 80px;
+
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.05) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.05) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.05) inset;
+
+}
 
 li {
     list-style: none;
@@ -270,6 +289,7 @@ div {
 p {
     font-family: 'Lato', sans-serif;
     font-size: 1rem;
+    white-space: pre-wrap;
 }
 
 a {
@@ -286,7 +306,8 @@ a:hover {
     padding: 40px;
 }
 
-.ally div h3, .ally div h2 {
+.ally div h3,
+.ally div h2 {
     padding: 40px;
 }
 
@@ -302,7 +323,7 @@ a:hover {
 
 }
 
-.ally-2{
+.ally-2 {
     background-image: url('/static/img/lgbt.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -344,7 +365,7 @@ a:hover {
     padding: 20px;
 }
 
-.posts{
+.posts {
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -359,6 +380,6 @@ a:hover {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    
+
 
 }
