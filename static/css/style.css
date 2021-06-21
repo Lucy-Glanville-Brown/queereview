@@ -12,6 +12,13 @@ html {
     text-align: center;
     box-sizing: border-box;
     overflow-x: hidden;
+
+}
+
+main {
+    padding-bottom: 150px;
+    
+
 }
 
 /* ---------------------navbar*/
@@ -67,6 +74,16 @@ html {
     align-items: center;
     flex-direction: column;
     margin-bottom: 40px;
+
+}
+
+.hero-upload {
+    background-image: url('/static/img/together.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+
 }
 
 .hero-single {
@@ -108,11 +125,19 @@ h1, h2, h3 {
     letter-spacing: 1.5px;
 }
 
+.top-sub-white {
+    color:white;
+    letter-spacing: 0.7px;
+    font-size: 2rem;
+}
+
 .top-sub {
     color:#f919b4;
     letter-spacing: 0.5px;
     font-size: 2rem;
 }
+
+
 
 .hero_text {
     font-size: 2.25rem;
@@ -158,6 +183,12 @@ h1, h2, h3 {
 }
 
 /*---------------------------footer*/
+
+footer {
+    -webkit-box-shadow: 0px -1px 2px 0px rgba(65, 25, 65, 0.15);
+-moz-box-shadow: 0px -1px 2px 0px rgba(131,53,131,0.15);
+box-shadow: 0px -1px 2px 0px rgba(65, 25, 65,0.15);
+}
 .btn-dark{
     background-color:rgba(131,53,131.9);
     color:#ffc800;

@@ -3,16 +3,49 @@
 
  {% block content %}
 
+ <div class="hero-upload">
+    <h1 class="top-head">Add a Post</h1>
+     <h2 class="top-sub-white">This is a safe place to ask questions, submit full peer reviews and get help with code snippets and functions
+     </h2>
+
+</div>
+
  <div class="add-post-div">
-     <h3>Add a Post</h3>
-     <h4>This is a safe place to ask questions, submit full peer reviews and get help with code snippets and functions
-     </h4>
-     <h5>Post Type</h5>
-     <button id="general" onclick="showhide('general_form')">General</button>
-     <button id="review" onclick="showhide('review_form')">Review</button>
-     <button id="code" onclick="showhide('code_form')">Code</button>
+     
+     <h3>Post Type</h3>
+     <button id="general" class="btn" onclick="showhide('general_form')">General</button>
+     <button id="review" class="btn" onclick="showhide('review_form')">Review</button>
+     <button id="code" class="btn" onclick="showhide('code_form')">Code</button>
 
+     {% for error in formCode.post_title.errors %}
+                 <p class="text-red">{{ error }}</p>
+                 {% endfor %}
+     {% for error in formGeneral.post_title.errors %}
+                 <p class="text-red">{{ error }}</p>
+                 {% endfor %}
+    
 
+                  {% for error in formReview.post_title.errors %}
+                 <p class="text-red">{{ error }}</p>
+                 {% endfor %}
+                 {% for error in formReview.github.errors %}
+                 <p class="text-red">{{ error }}</p>
+                 {% endfor %}
+                  {% for error in formReview.post_input.errors %}
+                 <p class="text-red">{{ error }}</p>
+                 {% endfor %}
+
+                 {% for error in formReview.deployed.errors %}
+                 <p class="text-red">{{ error }}</p>
+                 {% endfor %}
+                    {% for error in formCode.post_input.errors %}
+                 <p class="text-red">{{ error }}</p>
+                 {% endfor %}
+                  {% for error in formCode.code_pen.errors %}
+                 <p="text-red">{{ error }}</p>
+                 {% endfor %}
+
+<div class="container">
      <div id="general_form">
          <p>General Posts are for questions, events, advise!!! Maybe you want to ask a question about an LGBTQ issue at work, or you want to share your weekly win with the community! What ever it is go ahead!</p>
          <form class="input-form" method="POST" action="">
@@ -22,16 +55,12 @@
                  <input type="hidden" id="general" name="post_type" value="general">
                  <span class="input-group-text register-icon"></span>
                  {{ formGeneral.post_title(placeholder="Post Title", class="form-control") }}
-                 {% for error in formGeneral.post_title.errors %}
-                 <small class="text-red">{{ error }}</small>
-                 {% endfor %}
+
              </div>
              <div class="input-group ">
                  <span class="input-group-text register-icon"></span>
-                 {{ formGeneral.post_input(placeholder="Decription", class="form-control") }}
-                 {% for error in formGeneral.post_input.errors %}
-                 <small class="text-red">{{ error }}</small>
-                 {% endfor %}
+                 {{ formGeneral.post_input(placeholder="Description", class="form-control") }}
+                 
              </div>
 
              {{ formGeneral.submit(class="col-12 mt-4 btn register-btn") }}
@@ -48,30 +77,22 @@
                  <input type="hidden" id="code" name="post_type" value="review">
                  <span class="input-group-text register-icon"></span>
                  {{ formReview.post_title(placeholder="Post Title", class="form-control") }}
-                 {% for error in formReview.post_title.errors %}
-                 <small class="text-red">{{ error }}</small>
-                 {% endfor %}
+                
              </div>
              <div class="input-group ">
                  <span class="input-group-text register-icon"></span>
-                 {{ formReview.post_input(placeholder="Decription", class="form-control") }}
-                 {% for error in formReview.post_input.errors %}
-                 <small class="text-red">{{ error }}</small>
-                 {% endfor %}
+                 {{ formReview.post_input(placeholder="Description", class="form-control") }}
+                
              </div>
              <div class="input-group ">
                  <span class="input-group-text register-icon"></span>
                  {{ formReview.github(placeholder="GitHub URL", class="form-control") }}
-                 {% for error in formReview.github.errors %}
-                 <small class="text-red">{{ error }}</small>
-                 {% endfor %}
+                 
              </div>
              <div class="input-group ">
                  <span class="input-group-text register-icon"></span>
                  {{ formReview.deployed(placeholder="Deployed Site", class="form-control") }}
-                 {% for error in formReview.deployed.errors %}
-                 <small class="text-red">{{ error }}</small>
-                 {% endfor %}
+                 
              </div>
 
              {{ formReview.submit(class="col-12 mt-4 btn register-btn") }}
@@ -88,29 +109,24 @@
                  <input type="hidden" id="code" name="post_type" value="code">
                  <span class="input-group-text register-icon"></span>
                  {{ formCode.post_title(placeholder="Post Title", class="form-control") }}
-                 {% for error in formCode.post_title.errors %}
-                 <small class="text-red">{{ error }}</small>
-                 {% endfor %}
+                 
              </div>
              <div class="input-group ">
                  <span class="input-group-text register-icon"></span>
-                 {{ formCode.post_input(placeholder="Decription", class="form-control") }}
-                 {% for error in formCode.post_input.errors %}
-                 <small class="text-red">{{ error }}</small>
-                 {% endfor %}
+                 {{ formCode.post_input(placeholder="Description", class="form-control") }}
+              
              </div>
 
              <div class="input-group ">
                  <span class="input-group-text register-icon"></span>
                  {{ formCode.code_pen(placeholder="Code Pen URL", class="form-control") }}
-                 {% for error in formCode.code_pen.errors %}
-                 <small class="text-red">{{ error }}</small>
-                 {% endfor %}
+                
              </div>
 
              {{ formCode.submit(class="col-12 mt-4 btn register-btn") }}
 
          </form>
+     </div>
          
      </div>
  </div>
