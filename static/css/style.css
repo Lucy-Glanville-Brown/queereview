@@ -11,6 +11,7 @@ html {
     height: 100%;
     text-align: center;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 /* ---------------------navbar*/
@@ -65,8 +66,21 @@ html {
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 40px;
 }
 
+.hero-single {
+    background-image: url('/static/img/pridering.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
 
 .hero-profile {
 
@@ -259,4 +273,23 @@ a:hover {
 
 .profile-container {
     padding: 20px;
+}
+
+.posts{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.input_p {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.stream-container {
+    background-image: url('/static/img/flag.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+
 }

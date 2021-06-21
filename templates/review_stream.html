@@ -2,54 +2,67 @@
 
 {% block content %}
 
+
 <div class="hero-posts">
     <h2 class="top-head">Welcome to the Post Stream</h2>
-    <h3 class="top-sub">The place for reading about the latest info, taking part in code reviews and helping others with their code snippets</h3>
+    <h3 class="top-sub">The place for reading about the latest info, taking part in code reviews and helping others with
+        their code snippets</h3>
 
 </div>
+<div class="stream-container">
 
+<div class="container">
 <a class="btn btn-danger" href="{{ url_for('upload_post') }}">Add a Post</a>
 {% for post in posts | reverse %}
 
 {% if post.post_type == 'general' %}
-<div style="background-color: red">
-    <a href="{{url_for('post', post_id=post._id)}}" class="btn">Full post</a>
-    <p>Post Title:{{post.post_title}}</p>
-    <p>{{post.post_type}}</p>
-    <p>{{post.post_input}}</p>
-    <p>Post Author: {{post.author}}</p>
-    <p>{{post.date}}</p>      
-    
+<div style="background-color: rgba(171, 207, 239, 0.98)" class="posts">
+    <div class="row">
+        <h3>{{post.post_title}}</h3>
+    </div>
+    <div class="row">
+        <p class="input_p">{{post.post_input}}</p>
+        <p><a href="{{ url_for('profile', username=post.username ) }}">{{post.author}}</a></p>
+        <p>{{post.date}}</p>
+        <a href="{{url_for('post', post_id=post._id)}}" class="btn">Full post</a>
+    </div>
 </div>
 {% endif %}
 {% if post.github %}
-<div style="background-color: orange">
-    <a href="{{url_for('post', post_id=post._id)}}" class="btn">Full post</a>
-    <p>Post Title:{{post.post_title}}</p>
-    <p>Post Type: {{post.post_type}}</p>
-    <p>{{post.post_input}}</p>
-    <p>Post Author: {{post.author}}</p>
+<div style="background-color:rgba(255, 207, 239, 0.98)" class="posts">
+    <div class="row">
+    <h3>{{post.post_title}}</h3>
+    </div>
+    <div class="row">
+    <p class="input_p">{{post.post_input}}</p>
+    <p><a href="{{ url_for('profile', username=post.username ) }}">{{post.author}}</a></p>
     <p>{{post.date}}</p>
-    
-        <a href={{post.github}} target="_blank" class="btn">GitHub Link</a>
+    </div>
 
-        <a href={{post.deployed}} target="_blank" class="btn">Deployed Link</a>
-     
-    
+    <a href={{post.github}} target="_blank" class="btn">GitHub Link</a>
+    <a href={{post.deployed}} target="_blank" class="btn">Deployed Link</a>
+    <a href="{{url_for('post', post_id=post._id)}}" class="btn">Full post</a>
+
+
 </div>
-{% endif %} 
+{% endif %}
 {% if post.code_pen %}
-<div style="background-color: blueviolet">
-    <a href="{{url_for('post', post_id=post._id)}}" class="btn">Full post</a>
-    <p>Post Title:{{post.post_title}}</p>
-    <p>Post Type: {{post.post_type}}</p>
-    <p>{{post.post_input}}</p>
-    <p>Post Author: {{post.author}}</p>
+<div style="background-color: rgba(230, 239, 171, 0.98)" class="posts">
+    <div class="row">
+    <h3>{{post.post_title}}</h3>
+    </div>
+    <div class="row">
+    <p class="input_p">{{post.post_input}}</p>
+    <p><a href="{{ url_for('profile', username=post.username ) }}">{{post.author}}</a></p>
     <p>{{post.date}}</p>
-        <a href={{post.code_pen}} target="_blank" class="btn">My Code Pen</a>
+    </div>
+    <a href={{post.code_pen}} target="_blank" class="btn">My Code Pen</a>
+    <a href="{{url_for('post', post_id=post._id)}}" class="btn">Full post</a>
 
-          
-    
+
+
+</div>
+</div>
 </div>
 {% endif %}
 {% endfor %}

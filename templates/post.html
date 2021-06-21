@@ -1,19 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>
-    <p>Post Title:{{post.post_title}}</p>
-    <p>Post Type: {{post.post_type}}</p>
-    <p>{{post.post_input}}</p>
-    <p><a href={{url_for('profile', username=post.username)}}>Author: {{post.author}}</a></p>
+<div class="hero-single">
+    <h2 class="sub-head">{{post.post_title}}</p>
+</div>    
+<div class="row">
+    <p class="input_p">{{post.post_input}}</p>
+    <p><a href="{{ url_for('profile', username=post.username ) }}">{{post.author}}</a></p>
+    <p>{{post.date}}</p>
+    </div>
     {% if post.code_pen %}
-    <a href={{post.code_pen}} target="_blank">My Code Pen</a>
+    <a href={{post.code_pen}} target="_blank" class="btn">My Code Pen</a>
     {% endif %}
     {% if post.github %}
-    <a href={{post.github}} target="_blank">GitHub Link</a>
+    <a href={{post.github}} target="_blank" class="btn">GitHub Link</a>
     {% endif %}
     {% if post.deployed %}
-    <a href={{post.deployed}} target="_blank">Deployed Link</a>
+    <a href={{post.deployed}} target="_blank" class="btn ">Deployed Link</a>
     {% endif %}
 
     {% if session_user == post.user_id %}

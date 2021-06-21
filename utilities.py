@@ -146,7 +146,7 @@ def edit_review_post():
     github = request.form['github']
     deployed = request.form['deployed']
     
-    edi_post = {
+    edit_post = {
         'post_title': post_title,
         'post_input': post_input,
         'deployed': deployed,
