@@ -181,6 +181,10 @@ h3 {
     border: 2px solid;
 }
 
+.margin-top {
+    margin-top: 50px;
+}
+
 .btn-primary {
     color: #ffc800;
     background-color: rgba(131, 53, 131.9);
