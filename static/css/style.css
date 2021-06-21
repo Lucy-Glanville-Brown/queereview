@@ -39,6 +39,43 @@ html {
     height: 60vh
 }
 
+.hero-users {
+    background-image: url('/static/img/pride.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 70vh;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.hero-profile {
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+h1, h2, h3, h4, h5, h5 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+h1, h2, h3 {
+    font-weight: 900;
+}
+
+.top-head {
+    color: white;
+    font-size: 4rem;
+    letter-spacing: 1.5px;
+}
+
 .hero_text {
     font-size: 2.25rem;
     font-style: italic;
@@ -91,7 +128,7 @@ li {
     width: 100%;
     border-radius: 0.5rem;
     overflow: hidden;
-    background-color: rgba(26, 188, 156, 0.9);
+    background-color: rgb(26 188 95 / 5%);
     padding: 10px;
     display: flex;
     flex-wrap: nowrap;
@@ -112,7 +149,17 @@ div {
 
 p {
     font-family: 'Lato', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(24, 24, 24);
+}
+
+a:hover {
+    font-style: italic;
+    color: unset;
 }
 
 .ally div {
@@ -160,4 +207,13 @@ p {
 
 .content-container p {
     display: block;
+}
+
+.stream {
+    margin-top: 20px;
+}
+
+.profile_image {
+    width: 230px;
+    height: 230px;
 }

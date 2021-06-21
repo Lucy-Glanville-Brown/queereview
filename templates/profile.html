@@ -2,17 +2,32 @@
 
 {% block content %}
 
-<div class="container profile-container ">
+{% if user_profile.cover_img %}
+
+<div class="hero-profile" style="background-image: url('{{ user_profile.cover_image }}')">
+    <h2 class="top-head">{{ user_profile.username}} ( {{user_profile.personal_pronouns}} )</h2>
+
+</div>
+
+{% else %}
+
+<div class="hero-profile" style="background-image: url('/static/img/people.png')">
+    <h2 class="top-head">{{ user_profile.username}} ( {{user_profile.personal_pronouns}} )</h2>
+
+</div>
+
+{% endif %}
 
     {% if user_profile.profile_image %}
     <div class="row">
         <div class="content-container col col-md-3">
-            <img id="user_profile_image" src="{{ user_profile.profile_image }}" class="responsive-img profile_image"
+            <img id="user_profile_image" src="{{ user_profile.profile_image }}" class=" profile_image"
                 alt="Profile Image" />
                 {% if session['username'] == username %}
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Change Image
     </button>
+
     {% endif%}
             <!-- adding if statement only if signed in as user -->
         </div>
@@ -25,19 +40,24 @@
 
     <!-- end if  -->
     {% else %}
+    <div class="row">
 
-    <div class="img-container img-container col col-md-5">
+    <div class="img-container img-container col col-md-3">
         <img src="{{ url_for('static', filename='img/logo_32.png') }}" class="responsive-img profile_image"
             alt="Profile Image" />
         <!-- adding if statement only if signed in as user -->
     </div>
-    <div class="col-md-7">
-        <p class="bio">Username: {{ user_profile.username}} ( {{user_profile.personal_pronouns}} )</p>
-    </div>
+    <div class="col-md-7 content-container">
+            <h3 class="bio">Username: {{ user_profile.username}} ( {{user_profile.personal_pronouns}} )</h3>
+            <p><span class="profile-items">Occupation: </span>{{ user_profile.occupation}}</p>
+            <p><span class="profile-items">Tech Stack: </span>{{ user_profile.tech_stack}}</p>
+        </div>
     {% if session['username'] == username %}
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Add Image
     </button>
+   
+    </div>
     {% endif %}
     <!-- endif -->
     {% endif %}
@@ -80,5 +100,6 @@
 </div>
 
 {% include "includes/upload_image.html" %}
+
 
 {% endblock %}

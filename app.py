@@ -270,6 +270,28 @@ def upload_image(username):
         return redirect(url_for('profile', username=session['username']))
     return render_template("profile.html", username=session['username'])
 
+
+@app.route("/<username>/upload_cover", methods=["GET", "POST"])
+def upload_cover(username):
+
+    if request.method == 'POST':
+        for item in request.files.getlist("cover_image"):
+            filename = secure_filename(item.filename)
+            filename, file_extension = os.path.splitext(filename)
+            public_id_image = (username + '/q_auto:low/' + filename)
+            cloudinary.uploader.unsigned_upload(
+                item, "puppy_image", cloud_name='puppyplaymates',
+                folder='/doubleshamrocks/', public_id=public_id_image)
+            image_url = (
+                "https://res.cloudinary.com/puppyplaymates/image/upload/doubleshamrocks/"
+                + public_id_image + file_extension)
+
+            mongo.db.users.update(
+                {"username": session['username']},
+                {"$set": {"cover_image": image_url}})
+
+        return redirect(url_for('profile', username=session['username']))
+    return render_template("profile.html", username=session['username'])
 # Register
 
 
