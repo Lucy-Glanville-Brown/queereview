@@ -1,53 +1,52 @@
 /* orginal code Start Bootstrap - Agency v7.0.4 (https://startbootstrap.com/theme/agency) */
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap');
 
 
 body,
-html{
+html {
     margin: 0;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    
     height: 100%;
     text-align: center;
     box-sizing: border-box;
 }
+
 /* ---------------------navbar*/
 .fixed-top {
-    margin:0px 5vw;   
+    margin: 0px 5vw;
 }
 
-.container {
+
+.container-fluid {
+    padding-top: 80px;
+    padding-left: 0;
+    padding-right: 0;
     flex: 1 0 auto;
 }
 
-.container{
-    padding-top:80px;
-}
-
-.navbar-light 
-.navbar-brand{
-    color: rgba(131,53,131.9);
+.navbar-light .navbar-brand {
+    color: rgba(131, 53, 131.9);
     font-weight: 500;
 }
 
 /*---------------------hero image at home page*/
-.hero{
+.hero {
     background-image: url('/static/img/parade.jpg');
     background-position: center;
     background-repeat: no-repeat;
-    height:100%;
+    height: 60vh
 }
 
-.hero_text{
+.hero_text {
     font-size: 2.25rem;
     font-style: italic;
     line-height: 2.25rem;
-    margin-bottom: 2rem; 
+    margin-bottom: 2rem;
 }
 
-.welcome_text{
+.welcome_text {
     font-size: 4.5rem;
     font-weight: 700;
     line-height: 4.5rem;
@@ -55,8 +54,8 @@ html{
     color: #3a8cdf;
 }
 
-.btn{
-    margin:.75rem .375rem;
+.btn {
+    margin: .75rem .375rem;
 }
 
 .btn-primary {
@@ -84,7 +83,8 @@ li {
 .post_card {
     display: flex;
     width: 100%;
-}     
+}
+
 .post_item {
     cursor: pointer;
     position: relative;
@@ -96,12 +96,68 @@ li {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
-    
+
 }
 
 .flex {
     display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	padding-bottom: 1%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 1%;
+}
+
+div {
+    margin-top: 8px;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.3rem;
+}
+
+.ally div {
+    padding: 40px;
+}
+
+.ally div h3, .ally div h2 {
+    padding: 40px;
+}
+
+.ally-0 {
+    background-color: rgb(255, 251, 246);
+}
+
+.ally-1 {
+    background-image: url('/static/img/lgbt.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+.ally-2{
+    background-image: url('/static/img/lgbt.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.img-container {}
+
+.content-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: space-between;
+    flex-direction: column;
+}
+
+.content-container h3 {
+    padding-top: 25px;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.content-container p {
+    display: block;
 }
