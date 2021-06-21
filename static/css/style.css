@@ -14,6 +14,11 @@ html {
     overflow-x: hidden;
 }
 
+main {
+    padding-bottom: 150px;
+    
+}
+
 /* ---------------------navbar*/
 .fixed-top {
     margin: 0px 5vw;
@@ -175,6 +180,12 @@ h1, h2, h3 {
 }
 
 /*---------------------------footer*/
+
+footer {
+    -webkit-box-shadow: 0px -1px 2px 0px rgba(65, 25, 65, 0.15);
+-moz-box-shadow: 0px -1px 2px 0px rgba(131,53,131,0.15);
+box-shadow: 0px -1px 2px 0px rgba(65, 25, 65,0.15);
+}
 .btn-dark{
     background-color:rgba(131,53,131.9);
     color:#ffc800;
